@@ -3,8 +3,9 @@
 }
 
 .movieContent {
-  height: 65rem;
-  background-position: center top;
+  height: 75rem;
+  background-position: top center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +16,7 @@
   width: 50%;
   text-align: left;
   padding: 0 4rem;
-  color: #000;
+  color: #fff;
 }
 .movieDetails h2 {
   font-size: 6rem;

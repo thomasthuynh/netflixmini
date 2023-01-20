@@ -34,6 +34,7 @@ function App() {
     fetchMovies(searchValue);
   }
 
+  console.log(movieData);
 
   return (
     <div className="App">
@@ -50,7 +51,7 @@ function App() {
     </header>
 
     <main>
-      <section className="movieContent" style={selectedMovie.backdrop_path ? {backgroundImage: `url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`} : null}>
+      <section className="movieContent" style={selectedMovie.backdrop_path ? {backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(255, 255, 255, 0.25)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`} : null}>
         <div className="movieDetails">
           <h2>{selectedMovie.title}</h2>
           <p>{selectedMovie.overview}</p>
@@ -64,6 +65,7 @@ function App() {
                 <MovieContainer 
                   key={movie.id}
                   movie={movie}
+                  setSelectedMovie={setSelectedMovie}
                 />
               )
             })}
