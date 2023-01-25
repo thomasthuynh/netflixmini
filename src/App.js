@@ -11,6 +11,7 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [trailer, setTrailer] = useState("");
+  const [playVideo, setPlayVideo] = useState(false);
 
   const fetchMovies = async (searchValue) => {
     const lookupType = searchValue ? "search" : "discover";
@@ -26,8 +27,9 @@ function App() {
 
     setMovieData(response.data.results);
     setSelectedMovie(response.data.results[0]);
-  };
 
+    selectMovie(response.data.results[0])
+  };
 
   const fetchTrailer = async (id) => {
     const response = await axios.get(
@@ -41,7 +43,7 @@ function App() {
     );
     
       const trailerVideo = response.data.videos.results.find((video) => {
-        return video.name === "Official Trailer" || video.type === "Trailer";
+        return video.name === "Official Trailer" || video.name === "official trailer";
       });
 
       setTrailer(trailerVideo ? trailerVideo : response.data.videos.results[0]);
@@ -51,6 +53,7 @@ function App() {
   const selectMovie = (movie) => {
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
+    window.scrollTo(0, 0);
   }
 
   const searchMovies = (e) => {
@@ -94,6 +97,7 @@ function App() {
             <h2>{selectedMovie.title}</h2>
             <p>{selectedMovie.overview}</p>
             <p>Release Date: {selectedMovie.release_date}</p>
+            <button className='trailerButton' onClick={() => setPlayVideo(true)}>Watch Trailer</button>
           </div>
 
           <div className='moviePlayer'>

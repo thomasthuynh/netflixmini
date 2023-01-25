@@ -45,6 +45,10 @@ header {
   padding-bottom: 2.5rem;
 }
 
+.trailerButton {
+  align-self: flex-start;
+}
+
 .movieList {
   display: flex;
   flex-wrap: wrap;
