@@ -2,21 +2,39 @@
   text-align: center;
 }
 
-.movieContent {
-  height:75rem;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  height: 10%;
+}
+
+h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  color: #e50914;
+  letter-spacing: 0.1rem;
+}
+
+header {
+  height: 80rem;
   background-position: top center;
   background-size: cover;
+}
+
+.movieContent {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
 }
 
 .movieDetails {
+  height: calc(90% - 5rem);
   width: 50%;
   text-align: left;
   padding: 0 4rem;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   h2 {
     font-size: 6rem;
@@ -24,6 +42,8 @@
 
   p {
     font-size: 2.4rem;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
   }
 }
 
