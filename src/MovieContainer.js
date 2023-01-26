@@ -1,4 +1,3 @@
-import axios from 'axios';
 import './sass/Global.scss';
 import './sass/MovieContainer.scss';
 

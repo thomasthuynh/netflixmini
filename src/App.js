@@ -7,12 +7,22 @@ import MovieContainer from './MovieContainer';
 
 function App() {
 
+  // movieData will hold data for the top twenty trending movies
   const [movieData, setMovieData] = useState([]);
+  // selectedMovie will hold the data (title, overview, background image, etc.) for the movie the user has selected
   const [selectedMovie, setSelectedMovie] = useState({});
+  // searchValue will hold the user's search input
   const [searchValue, setSearchValue] = useState("");
+  // trailer will hold the key value for the trailer video
   const [trailer, setTrailer] = useState("");
+  // playVideo will determine whether the video player will be displayed or hidden
   const [playVideo, setPlayVideo] = useState(false);
 
+
+  // This function will:
+  // 1. Set the movieData state variable to the top twenty movies returned based off the user's search 
+  // 2. Set the selectedMovie state variable to the first movie returned in the array
+  // 3. The selectMovie function will run taking the first movie returned in the array as an argument
   const fetchMovies = async (searchValue) => {
     const lookupType = searchValue ? "search" : "discover";
     const response = await axios.get(
@@ -50,17 +60,20 @@ function App() {
   };
 
 
+  // This function will be run when the user selects a movie. The trailer will be fetched (fetchTrailer) and the data (title, overview, background image, etc.) will be displayed on the page (selectedMovie). The application will then scroll back to the top of the page
   const selectMovie = (movie) => {
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
     window.scrollTo(0, 0);
   }
 
+  // This function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchValue);
   }
 
+  // This useEffect will run the fetchMovies function on page load
   useEffect(() => {
     fetchMovies();
   }, [])
