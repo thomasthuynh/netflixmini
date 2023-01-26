@@ -60,8 +60,13 @@ function App() {
   };
 
 
-  // This function will be run when the user selects a movie. The trailer will be fetched (fetchTrailer) and the data (title, overview, background image, etc.) will be displayed on the page (selectedMovie). The application will then scroll back to the top of the page
+  // This function will be run when the user selects a movie and will:
+  // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
+  // 2. Fetch the trailer (fetchTrailer) 
+  // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
+  // 4. The application will then scroll back to the top of the page
   const selectMovie = (movie) => {
+    setPlayVideo(false);
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
     window.scrollTo(0, 0);
@@ -81,7 +86,6 @@ function App() {
 
   return (
     <div className="App">
-
       <header
         style={
           selectedMovie.backdrop_path
@@ -91,7 +95,6 @@ function App() {
             : null
         }
       >
-
         <nav>
           <h1>Miniflix</h1>
 
@@ -104,23 +107,42 @@ function App() {
           </form>
         </nav>
 
-
         <div className="movieContent">
           <div className="movieDetails">
             <h2>{selectedMovie.title}</h2>
             <p>{selectedMovie.overview}</p>
             <p>Release Date: {selectedMovie.release_date}</p>
-            <button className='trailerButton' onClick={() => setPlayVideo(true)}>Watch Trailer</button>
+            <button className="watchTrailer" onClick={() => setPlayVideo(true)}>
+              Watch Trailer
+            </button>
           </div>
 
-          <div className='moviePlayer'>
-            <YouTube 
-              videoId={trailer.key}
-            />
-          </div>
+
+            {playVideo ? (
+              <div className="moviePlayer">
+                <YouTube
+                  videoId={trailer.key}
+                  className="youtubePlayer"
+                  opts={{
+                    height: "100%",
+                    width: "100%",
+                    playerVars: {
+                      autoplay: 1
+                    }
+                  }}
+                />
+                <button
+                  className="closeTrailer"
+                  onClick={() => setPlayVideo(false)}
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <div></div>
+            )}
 
         </div>
-
       </header>
 
       <section>

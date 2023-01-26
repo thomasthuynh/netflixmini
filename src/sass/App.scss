@@ -17,13 +17,15 @@ h1 {
 }
 
 header {
-  height: 80rem;
+  height: 90rem;
   background-position: top center;
   background-size: cover;
 }
 
 .movieContent {
   display: flex;
+  height: calc(90% - 5rem);
+  position: relative;
 }
 
 .movieDetails {
@@ -47,8 +49,20 @@ header {
   }
 }
 
-.trailerButton {
+.watchTrailer {
   align-self: flex-start;
+}
+
+.moviePlayer {
+  position: absolute;
+  top: 0;
+  bottom: 10rem;
+  left: 20rem;
+  right: 20rem;
+}
+
+.youtubePlayer {
+  height: 100%;
 }
 
 .movieList {
