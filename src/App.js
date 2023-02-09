@@ -90,7 +90,7 @@ function App() {
         style={
           selectedMovie.backdrop_path
             ? {
-                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.90), rgba(255, 255, 255, 0.25)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
+                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
               }
             : null
         }

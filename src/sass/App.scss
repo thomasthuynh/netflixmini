@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: #000;
 }
 
 nav {
@@ -51,6 +52,17 @@ header {
 
 .watchTrailer {
   align-self: flex-start;
+  background: #fff;
+  border: 0.1rem solid #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
 }
 
 .moviePlayer {

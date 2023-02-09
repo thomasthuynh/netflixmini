@@ -8,7 +8,9 @@ const MovieContainer = ({movie, selectMovie}) => {
             {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} /> 
             :
             <p>No Image Available</p>}
-            <p>{movie.title}</p>
+            <div className='overlay'>
+                <p>{movie.title}</p>
+            </div>
         </li>
     )
 }

@@ -1,5 +1,35 @@
 li {
     width: 18%;
-    padding: 1rem;
+    margin: 1rem;
     cursor: pointer;
+    border: none;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+
+    p {
+        display: none;
+        font-size: 2rem;
+        padding: 1rem;
+    }
+
+    &:hover {
+        background: black;
+        opacity: 0.75;
+
+        p {
+            display: block;
+        }
+    }
 }
