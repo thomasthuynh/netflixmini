@@ -10,7 +10,7 @@ li {
     width: 18%;
     margin: 1rem;
     cursor: pointer;
-    border: none;
+    border: 0.1rem solid #fff;
     position: relative;
 }
 
@@ -45,6 +45,6 @@ li {
 
 .likeIcon {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0.25rem;
+    left: 0.25rem;
 }

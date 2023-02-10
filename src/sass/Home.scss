@@ -52,6 +52,43 @@ nav {
     }
 }
 
+.searchBarAndAccountButtons {
+  display: flex;
+}
+
+.signInButton {
+  align-self: flex-start;
+  background: #fff;
+  border: 0.1rem solid #fff;
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.signUpButton {
+  align-self: flex-start;
+  background: #000;
+  color: #fff;
+  border: 0.2rem solid #fff;
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
 
 h1 {
   font-size: 4rem;
@@ -98,7 +135,6 @@ header {
 }
 
 .watchTrailerButton {
-  align-self: flex-start;
   background: #fff;
   border: 0.1rem solid #fff;
   padding: 1.5rem 2rem;

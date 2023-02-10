@@ -7,14 +7,14 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDmtPERFbL4C_m9zGKNWFIV7u2fDJII5Z0",
-  authDomain: "miniflix-557d7.firebaseapp.com",
-  projectId: "miniflix-557d7",
-  storageBucket: "miniflix-557d7.appspot.com",
-  messagingSenderId: "150346486955",
-  appId: "1:150346486955:web:3f5aba3882fe81bebed3ee"
+  apiKey: "AIzaSyAmA1AUSS2u4MOemxaZz0t2zz3lScuUBcY",
+  authDomain: "movie-trailer-app-19e77.firebaseapp.com",
+  projectId: "movie-trailer-app-19e77",
+  storageBucket: "movie-trailer-app-19e77.appspot.com",
+  messagingSenderId: "391651097436",
+  appId: "1:391651097436:web:b250185f65eea8193c5f99"
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

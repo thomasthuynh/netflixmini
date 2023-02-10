@@ -1,5 +1,5 @@
-import './sass/Global.scss';
-import './sass/MovieContainer.scss';
+import '../sass/Global.scss';
+import '../sass/MovieContainer.scss';
 import { useState } from 'react';
 
 // Font imports
