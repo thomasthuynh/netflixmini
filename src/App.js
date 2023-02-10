@@ -5,6 +5,19 @@ import YouTube from 'react-youtube';
 import {useState, useEffect} from 'react';
 import MovieContainer from './MovieContainer';
 
+// Font imports
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+const play = <FontAwesomeIcon icon={faPlay} />
+const heart = <FontAwesomeIcon icon={faHeartSolid} />
+const xMark = <FontAwesomeIcon icon={faCircleXmark} />
+const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />
+
 function App() {
 
   // movieData will hold data for the top twenty trending movies
@@ -90,7 +103,7 @@ function App() {
         style={
           selectedMovie.backdrop_path
             ? {
-                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
+                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
               }
             : null
         }
@@ -99,11 +112,16 @@ function App() {
           <h1>Miniflix</h1>
 
           <form onSubmit={searchMovies}>
-            <input
-              type="text"
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <button>Search</button>
+            <div className="searchContainer">
+              <input
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search"
+              />
+              <button type="submit" className="searchButton">
+                {searchIcon}
+              </button>
+            </div>
           </form>
         </nav>
 
@@ -111,41 +129,49 @@ function App() {
           <div className="movieDetails">
             <h2>{selectedMovie.title}</h2>
             <p>{selectedMovie.overview}</p>
-            <p>Release Date: {selectedMovie.release_date}</p>
-            <button className="watchTrailer" onClick={() => setPlayVideo(true)}>
-              Watch Trailer
-            </button>
+
+            <div className="movieDetailsButtons">
+              <button
+                className="watchTrailerButton"
+                onClick={() => setPlayVideo(true)}
+              >
+                {play}
+                &nbsp; Watch Trailer
+              </button>
+              <button className="addToFavouritesButton">
+                {heart} &nbsp; Add to Favourites
+              </button>
+            </div>
           </div>
 
-
-            {playVideo ? (
-              <div className="moviePlayer">
-                <YouTube
-                  videoId={trailer.key}
-                  className="youtubePlayer"
-                  opts={{
-                    height: "100%",
-                    width: "100%",
-                    playerVars: {
-                      autoplay: 1
-                    }
-                  }}
-                />
-                <button
-                  className="closeTrailer"
-                  onClick={() => setPlayVideo(false)}
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              <div></div>
-            )}
-
+          {playVideo ? (
+            <div className="moviePlayer">
+              <YouTube
+                videoId={trailer.key}
+                className="youtubePlayer"
+                opts={{
+                  height: "100%",
+                  width: "100%",
+                  playerVars: {
+                    autoplay: 1,
+                  },
+                }}
+              />
+              <button
+                className="closeTrailerButton"
+                onClick={() => setPlayVideo(false)}
+              >
+                {xMark} &nbsp; Close
+              </button>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </header>
 
-      <section>
+      <section className="trendingMovies">
+        <h2>Here's What's Trending</h2>
         <ul className="movieList">
           {movieData.map((movie) => {
             return (
