@@ -1,8 +1,13 @@
+import NavBar from "../components/NavBar";
+
 const SignUp = () => {
 
 
     return (
-        <div>Sign Up</div>
+        <div>
+            <NavBar />
+            <p>SignIn</p>
+        </div>
     )
 }
 

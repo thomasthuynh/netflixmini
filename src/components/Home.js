@@ -4,6 +4,7 @@ import axios from 'axios';
 import YouTube from 'react-youtube';
 import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 import MovieContainer from './MovieContainer';
 
 // Font imports
@@ -111,33 +112,11 @@ const Home = () => {
             : null
         }
       >
-        <nav>
-          <h1>Miniflix</h1>
-
-          <div className="searchBarAndAccountButtons">
-            <form onSubmit={searchMovies}>
-              <div className="searchContainer">
-                <input
-                  type="text"
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder="Search"
-                />
-                <button type="submit" className="searchButton">
-                  {searchIcon}
-                </button>
-              </div>
-            </form>
-
-            <Link to='/signin'>
-              <button className="signInButton">Sign In</button>
-            </Link>
-
-            <Link to='/signup'>
-              <button className="signUpButton">Sign Up</button>
-            </Link>
-
-          </div>
-        </nav>
+        <NavBar 
+          searchMovies={searchMovies}
+          setSearchValue={setSearchValue}
+          searchIcon={searchIcon}
+        />
 
         <div className="movieContent">
           <div className="movieDetails">

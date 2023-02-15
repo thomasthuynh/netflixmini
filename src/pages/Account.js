@@ -1,8 +1,13 @@
+import NavBar from "../components/NavBar";
+
 const Account = () => {
 
 
     return (
-        <div>Account</div>
+        <div>
+            <NavBar />
+            <p>Account</p>
+        </div>
     )
 }
 
