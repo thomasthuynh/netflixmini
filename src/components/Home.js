@@ -1,5 +1,5 @@
-import '../sass/Global.scss';
-import '../sass/Home.scss';
+import '../scss/_global.scss';
+import '../scss/_home.scss';
 import axios from 'axios';
 import YouTube from 'react-youtube';
 import {useState, useEffect} from 'react';
@@ -112,9 +112,7 @@ const Home = () => {
         }
       >
         <nav>
-          <Link to="/">
-            <h1>Miniflix</h1>
-          </Link>
+          <h1>Miniflix</h1>
 
           <div className="searchBarAndAccountButtons">
             <form onSubmit={searchMovies}>
