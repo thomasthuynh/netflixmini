@@ -1,0 +1,85 @@
+.signInContainer,
+.signUpContainer {
+    background: url("https://assets.nflxext.com/ffe/siteui/vlv3/d54727b4-2ad9-4e71-bb48-0899f55f103a/49d3aeb8-486a-4e7c-9af2-6cced7625add/CA-en-20230220-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    color: #fff;
+}
+
+.signInFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(90vh - 5rem);
+}
+
+.signInForm {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60rem;
+    width: 45rem;
+    font-size: 3rem;
+
+    h2 {
+        padding: 4rem 0;
+        font-size: 3.5rem;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 1.75rem;
+        margin: 2rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        margin-bottom: 2.5rem;
+        padding: 1rem;
+        border: 0.1rem solid #fff;
+        border-radius: 0.5rem;
+        height: 3rem;
+        width: 25rem;
+        border: none;
+        background: #333333;
+        color: #fff;
+        font-size: 1.6rem;
+        outline: none;
+    
+        &::placeholder {
+          color: #fff;
+        }
+    }
+
+    button {
+        background: #e50914;
+        color: #fff;
+        border: none;
+        margin-top: 1rem;
+        padding: 1.25rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      
+        &:hover {
+          opacity: 0.6;
+        }
+    }
+}
+
+.signUpText {
+    color: rgb(115, 115, 115);
+
+    a {
+        color: #fff;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

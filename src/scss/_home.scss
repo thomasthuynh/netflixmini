@@ -7,19 +7,19 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 2.5rem;
-  height: 10%;
+  height: 10vh;
 }
 
 .searchContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 2.75rem;
+  height: 2.25rem;
   width: 25rem;
   background: #000;
   border: 0.2rem solid #fff;
   padding: 1rem 0.5rem;
-  border-radius: 5rem;
+  opacity: 0.7;
 
   input {
     height: 3rem;
@@ -38,12 +38,12 @@ nav {
 }
 
 .searchButton {
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   font-size: 1.75rem;
-  background: #fff;
+  background: none;
+  color: #fff;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -58,11 +58,11 @@ nav {
 
 .signInButton {
   align-self: flex-start;
-  background: #fff;
-  border: 0.1rem solid #fff;
+  color: #fff;
+  background: none;
+  border: none;
   padding: 1.5rem 2rem;
   font-size: 1.75rem;
-  font-weight: bold;
   cursor: pointer;
   margin: 0 2rem;
   border-radius: 0.5rem;
@@ -75,18 +75,17 @@ nav {
 
 .signUpButton {
   align-self: flex-start;
-  background: #000;
+  background: #e50914;
   color: #fff;
-  border: 0.2rem solid #fff;
+  border: none;
   padding: 1.5rem 2rem;
   font-size: 1.75rem;
-  font-weight: bold;
   cursor: pointer;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
 
@@ -139,13 +138,12 @@ header {
   border: 0.1rem solid #fff;
   padding: 1.5rem 2rem;
   font-size: 1.75rem;
-  font-weight: bold;
   cursor: pointer;
   margin-right: 2rem;
   transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
 
@@ -155,27 +153,26 @@ header {
   border: 0.1rem solid #fff;
   padding: 1.5rem 2rem;
   font-size: 1.75rem;
-  font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
 
 .closeTrailerButton {
+  background: #fff;
   border: 0.1rem solid #fff;
   padding: 1.5rem 2rem;
+  margin-top: 1rem;
   font-size: 1.75rem;
-  font-weight: bold;
   cursor: pointer;
-  margin-top: 0.5rem;
-  opacity: 0.6;
+  margin-right: 2rem;
   transition: all 0.2s ease;
 
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 

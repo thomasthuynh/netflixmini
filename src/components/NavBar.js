@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 
-const NavBar = ({searchMovies, setSearchValue, searchIcon}) => {
+// Font imports
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+
+const NavBar = ({searchMovies, setSearchValue}) => {
+
+    const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />
 
     return (
         <nav>
-        <h1>Miniflix</h1>
+        <h1><Link to="/">Miniflix</Link></h1>
 
         <div className="searchBarAndAccountButtons">
           <form onSubmit={searchMovies}>
