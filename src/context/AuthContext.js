@@ -12,7 +12,7 @@ const createAccount = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
 }
 
-const logIn = (email, password) => {
+const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
 }
 
@@ -32,7 +32,7 @@ useEffect(() => {
 
 
     return (
-        <AuthContext.Provider value={{user, createAccount, logIn, logOut}}>
+        <AuthContext.Provider value={{user, createAccount, signIn, logOut}}>
             {children}
         </AuthContext.Provider>
     )
