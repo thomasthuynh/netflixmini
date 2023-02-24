@@ -8,6 +8,7 @@ import { useState } from "react";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { user, createAccount } = useContext(AuthContextProvider);
   const navigate = useNavigate();
 
@@ -16,9 +17,10 @@ const SignUp = () => {
 
     try {
       await createAccount(email, password);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
 
@@ -28,11 +30,20 @@ const SignUp = () => {
 
       <div className="signInFormContainer">
         <div className="signInForm">
-          <h2>Sign Up</h2>
+          <h1>Sign Up</h1>
+          {error ? <p className="errorMessage">{error}</p> : null}
 
           <form onSubmit={handleSignUp}>
-            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
+            />
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
             <button>Sign Up</button>
           </form>
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import '../scss/_signInSignUp.scss';
+import "../scss/_signInSignUp.scss";
 import AuthContextProvider from "../context/AuthContext";
 import { useContext } from "react";
 import { useState } from "react";
@@ -17,32 +17,43 @@ const SignIn = () => {
 
     try {
       await signIn(email, password);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
       setError(err.message);
     }
   };
 
-    return (
-      <div className="signInContainer">
-        <NavBar />
+  return (
+    <div className="signInContainer">
+      <NavBar />
 
-        <div className="signInFormContainer">
-          <div className="signInForm">
-            <h1>Sign In</h1>
-            {error ? <p className="errorMessage">{error}</p> : null}
-            <form onSubmit={handleSignIn}>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-              <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-              <button>Sign In</button>
-            </form>
+      <div className="signInFormContainer">
+        <div className="signInForm">
+          <h1>Sign In</h1>
+          {error ? <p className="errorMessage">{error}</p> : null}
+          <form onSubmit={handleSignIn}>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+            <button>Sign In</button>
+          </form>
 
-            <p className="signUpText">New to Miniflix? <Link to="/signUp">Sign up now</Link></p>
-          </div>
+          <p className="signUpText">
+            New to Miniflix? <Link to="/signUp">Sign up now</Link>
+          </p>
         </div>
       </div>
-    );
-}
+    </div>
+  );
+};
 
 export default SignIn;
