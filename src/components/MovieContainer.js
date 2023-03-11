@@ -39,7 +39,7 @@ const MovieContainer = ({ movie, selectMovie }) => {
   }
 
   return (
-    <li onClick={() => selectMovie(movie)}>
+    <li>
       {movie.poster_path ? (
         <img
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -49,7 +49,7 @@ const MovieContainer = ({ movie, selectMovie }) => {
         <p>No Image Available</p>
       )}
       <div className="overlay">
-        <p className="posterTitle">{movie.title}</p>
+        <p onClick={() => selectMovie(movie)} className="posterTitle">{movie.title}</p>
         <p onClick={saveMovie} className="likeIcon">{like ? heartSolid : heartReg}</p>
       </div>
     </li>

@@ -11,7 +11,6 @@
 li {
     width: 18%;
     margin: 1rem;
-    cursor: pointer;
     border: 0.2rem solid #fff;
     position: relative;
 }
@@ -33,6 +32,7 @@ li {
         display: none;
         font-size: 2rem;
         padding: 1rem;
+        cursor: pointer;
     }
 
     &:hover {

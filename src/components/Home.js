@@ -3,7 +3,6 @@ import "../scss/_home.scss";
 import axios from "axios";
 import YouTube from "react-youtube";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import MovieContainer from "./MovieContainer";
 
