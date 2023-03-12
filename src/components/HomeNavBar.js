@@ -22,9 +22,10 @@ const NavBar = ({ searchMovies, setSearchValue, fetchMovies }) => {
   };
 
   const loadLandingPage = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     navigate("/");
-  };
+    fetchMovies();
+  }
 
   return (
     <nav>
@@ -34,6 +35,19 @@ const NavBar = ({ searchMovies, setSearchValue, fetchMovies }) => {
 
       {user?.email ? (
         <div className="searchBarAndAccountButtons">
+          <form onSubmit={searchMovies}>
+            <div className="searchContainer">
+              <input
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search"
+              />
+              <button type="submit" className="searchButton">
+                {searchIcon}
+              </button>
+            </div>
+          </form>
+
           <Link to="/account">
             <button className="signInButton">Account</button>
           </Link>
@@ -44,6 +58,19 @@ const NavBar = ({ searchMovies, setSearchValue, fetchMovies }) => {
         </div>
       ) : (
         <div className="searchBarAndAccountButtons">
+          <form onSubmit={searchMovies}>
+            <div className="searchContainer">
+              <input
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search"
+              />
+              <button type="submit" className="searchButton">
+                {searchIcon}
+              </button>
+            </div>
+          </form>
+
           <Link to="/signin">
             <button className="signInButton">Sign In</button>
           </Link>

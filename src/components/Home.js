@@ -1,25 +1,25 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import YouTube from "react-youtube";
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
+import YouTube from "react-youtube";
 
 // Font imports
-import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
+const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 const play = <FontAwesomeIcon icon={faPlay} />;
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
 const xMark = <FontAwesomeIcon icon={faCircleXmark} />;
-const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
 const Home = () => {
   // movieData will hold data for the top twenty trending movies
@@ -33,7 +33,7 @@ const Home = () => {
   // playVideo will determine whether the video player will be displayed or hidden
   const [playVideo, setPlayVideo] = useState(false);
 
-  // This function will:
+  // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned based off the user's search
   // 2. Set the selectedMovie state variable to the first movie returned in the array
   // 3. The selectMovie function will run taking the first movie returned in the array as an argument
@@ -76,7 +76,7 @@ const Home = () => {
     setTrailer(trailerVideo ? trailerVideo : response.data.videos.results[0]);
   };
 
-  // This function will be run when the user selects a movie and will:
+  // The selectMovie function will be run when the user selects a movie and will:
   // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
   // 2. Fetch the trailer (fetchTrailer)
   // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
@@ -88,7 +88,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
-  // This function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument
+  // The searchMovies function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchValue);
@@ -110,10 +110,11 @@ const Home = () => {
             : null
         }
       >
-        <NavBar
+        <HomeNavBar
           searchMovies={searchMovies}
           setSearchValue={setSearchValue}
           searchIcon={searchIcon}
+          fetchMovies={fetchMovies}
         />
 
         <div className="movieContent">

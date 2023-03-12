@@ -7,8 +7,8 @@ import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 // Font imports
-import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
 
@@ -17,26 +17,24 @@ const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
 
 const MovieContainer = ({ movie, selectMovie }) => {
   const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const {user} = useContext(AuthContextProvider);
 
-  const movieId = doc(db, "users", `${user?.email}`)
+  const { user } = useContext(AuthContextProvider);
+  const movieId = doc(db, "users", `${user?.email}`);
 
   const saveMovie = async () => {
-    if(user?.email) {
-      setLike(true)
-      setSaved(true)
+    if (user?.email) {
+      setLike(!like);
       await updateDoc(movieId, {
         savedMovies: arrayUnion({
           id: movie.id,
           title: movie.title,
-          img: movie.poster_path
-        })
-      })
+          img: movie.poster_path,
+        }),
+      });
     } else {
-      alert("Please sign in to save a movie")
+      alert("Please sign in to save a movie");
     }
-  }
+  };
 
   return (
     <li>
@@ -49,8 +47,12 @@ const MovieContainer = ({ movie, selectMovie }) => {
         <p>No Image Available</p>
       )}
       <div className="overlay">
-        <p onClick={() => selectMovie(movie)} className="posterTitle">{movie.title}</p>
-        <p onClick={saveMovie} className="likeIcon">{like ? heartSolid : heartReg}</p>
+        <p onClick={() => selectMovie(movie)} className="posterTitle">
+          {movie.title}
+        </p>
+        <p onClick={saveMovie} className="likeIcon">
+          {like ? heartSolid : heartReg}
+        </p>
       </div>
     </li>
   );
