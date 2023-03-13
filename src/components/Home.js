@@ -13,12 +13,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 const play = <FontAwesomeIcon icon={faPlay} />;
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
+const star = <FontAwesomeIcon icon={faStar} />;
 const xMark = <FontAwesomeIcon icon={faCircleXmark} />;
 
 const Home = () => {
@@ -32,12 +34,21 @@ const Home = () => {
   const [trailer, setTrailer] = useState("");
   // playVideo will determine whether the video player will be displayed or hidden
   const [playVideo, setPlayVideo] = useState(false);
+  // isScrolled will determine whether the user has scrolled down from the top of the page
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // If the user has scrolled from the top of the page:
+  // 1. isScrolled will be set to true
+  // 2. isScrolled will be passed to the HomeNavBar component
+  // 3. The nav bar will be set to a class of "homeNav scrolled", triggering the CSS property (background: #000) to activate
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+  }
 
   // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned based off the user's search
   // 2. Set the selectedMovie state variable to the first movie returned in the array
   // 3. The selectMovie function will run taking the first movie returned in the array as an argument
-
   const fetchMovies = async (searchValue) => {
     const lookupType = searchValue ? "search" : "discover";
     const response = await axios.get(
@@ -54,6 +65,7 @@ const Home = () => {
     setSelectedMovie(response.data.results[0]);
 
     selectMovie(response.data.results[0]);
+    console.log(response)
   };
 
   const fetchTrailer = async (id) => {
@@ -111,6 +123,7 @@ const Home = () => {
         }
       >
         <HomeNavBar
+          isScrolled={isScrolled}
           searchMovies={searchMovies}
           setSearchValue={setSearchValue}
           searchIcon={searchIcon}
@@ -121,6 +134,7 @@ const Home = () => {
           <div className="movieDetails">
             <h2>{selectedMovie.title}</h2>
             <p>{selectedMovie.overview}</p>
+            <p><span className="starIcon">{star}</span>&nbsp; {selectedMovie.vote_average}</p>
 
             <div className="movieDetailsButtons">
               <button
@@ -130,9 +144,9 @@ const Home = () => {
                 {play}
                 &nbsp; Watch Trailer
               </button>
-              <button className="addToFavouritesButton">
+              {/* <button className="addToFavouritesButton">
                 {heartReg} &nbsp; Add to Favourites
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -164,6 +178,7 @@ const Home = () => {
 
       <section className="trendingMovies">
         <h2>Here's What's Trending</h2>
+
         <ul className="movieList">
           {movieData.map((movie) => {
             return (

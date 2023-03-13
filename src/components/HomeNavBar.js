@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = ({ searchMovies, setSearchValue, fetchMovies }) => {
+const NavBar = ({ isScrolled, searchMovies, setSearchValue, fetchMovies }) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const NavBar = ({ searchMovies, setSearchValue, fetchMovies }) => {
   }
 
   return (
-    <nav>
+    <nav className={isScrolled ? "homeNav scrolled" : "homeNav"}>
       <h1>
         <Link onClick={loadLandingPage}>Miniflix</Link>
       </h1>

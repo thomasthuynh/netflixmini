@@ -7,7 +7,26 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 2.5rem;
-  height: 10vh;
+  height: 6vh;
+}
+
+.homeNav {
+  position: fixed;
+  z-index: 100;
+  width: 98%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  transition: all 0.75s ease;
+
+  &.scrolled {
+    background: #000;
+  } 
+}
+
+nav h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  color: #e50914;
+  letter-spacing: 0.1rem;
 }
 
 .searchContainer {
@@ -89,13 +108,6 @@ nav {
   }
 }
 
-nav h1 {
-  font-size: 4rem;
-  text-transform: uppercase;
-  color: #e50914;
-  letter-spacing: 0.1rem;
-}
-
 header {
   height: 90rem;
   background-position: center;
@@ -104,12 +116,11 @@ header {
 
 .movieContent {
   display: flex;
-  height: calc(90% - 5rem);
+  height: 100%;
   position: relative;
 }
 
 .movieDetails {
-  height: calc(90% - 5rem);
   width: 50%;
   text-align: left;
   padding: 0 4rem;
@@ -125,8 +136,12 @@ header {
   p {
     font-size: 2.4rem;
     padding-top: 1rem;
-    padding-bottom: 2.5rem;
+    padding-bottom: 2rem;
   }
+}
+
+.starIcon {
+  color: rgb(238, 238, 0);
 }
 
 .movieDetailsButtons {
