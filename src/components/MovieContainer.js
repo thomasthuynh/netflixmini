@@ -11,9 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
+const circleInfo = <FontAwesomeIcon icon={faCircleInfo} />;
 
 const MovieContainer = ({ movie, selectMovie }) => {
   const [like, setLike] = useState(false);
@@ -39,17 +41,19 @@ const MovieContainer = ({ movie, selectMovie }) => {
   return (
     <li>
       {movie.poster_path ? (
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt={movie.title}
-        />
+        <div className="posterImage">
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <div onClick={() => selectMovie(movie)} className="posterOverlay">
+          </div>
+        </div>
       ) : (
         <p>No Image Available</p>
       )}
-      <div className="overlay">
-        <p onClick={() => selectMovie(movie)} className="posterTitle">
-          {movie.title}
-        </p>
+      <div className="infoAndLikeContainer">
+        <p className="movieTitle">{movie.title}</p>
         <p onClick={saveMovie} className="likeIcon">
           {like ? heartSolid : heartReg}
         </p>

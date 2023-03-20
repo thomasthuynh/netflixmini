@@ -11,15 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 const play = <FontAwesomeIcon icon={faPlay} />;
-const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
-const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
 const star = <FontAwesomeIcon icon={faStar} />;
 const xMark = <FontAwesomeIcon icon={faCircleXmark} />;
 
@@ -132,9 +128,9 @@ const Home = () => {
 
         <div className="movieContent">
           <div className="movieDetails">
-            <h2>{selectedMovie.title}</h2>
-            <p>{selectedMovie.overview}</p>
-            <p><span className="starIcon">{star}</span>&nbsp; {selectedMovie.vote_average}</p>
+            <h2 className="movieTitle">{selectedMovie.title}</h2>
+            <p className="movieOverview">{selectedMovie.overview}</p>
+            <p className="movieRating"><span className="starIcon">{star}</span>&nbsp;{selectedMovie.vote_average ? selectedMovie.vote_average.toFixed(1) : null}</p>
 
             <div className="movieDetailsButtons">
               <button

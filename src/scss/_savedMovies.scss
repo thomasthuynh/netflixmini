@@ -1,5 +1,24 @@
+.infoAndDeleteContainer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background: #e50914;
+    margin-top: -0.25rem;
+    padding-left: 1rem;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .trashIcon {
     position: absolute;
     top: 0.25rem;
     right: 0.25rem;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        opacity: 0.75;
+    }
 }

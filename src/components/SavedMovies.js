@@ -45,21 +45,21 @@ const SavedMovies = () => {
           return (
             <li key={id}>
               {movie.img ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.img}`}
-                  alt={movie.title}
-                />
+                <div className="posterImage">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.img}`}
+                    alt={movie.title}
+                  />
+                  <div className="posterOverlay"></div>
+                </div>
               ) : (
                 <p>No Image Available</p>
               )}
-              <div className="overlay">
-                <p className="posterTitle">{movie.title}</p>
-                <p
-                  onClick={() => {
-                    deleteMovie(movie.id);
-                  }}
-                  className="trashIcon"
-                >
+              <div className="infoAndDeleteContainer">
+                <p className="movieTitle">{movie.title}</p>
+                <p onClick={() => {
+                  deleteMovie(movie.id)
+                }} className="likeIcon">
                   {trashCan}
                 </p>
               </div>
