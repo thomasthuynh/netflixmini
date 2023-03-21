@@ -1,3 +1,5 @@
+import "../scss/_global.scss";
+import "../scss/_nav.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
@@ -7,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = ({ isScrolled, searchMovies, setSearchValue, fetchMovies }) => {
+const NavBar = ({ isScrolled, setSearchValue, searchMovies, fetchMovies }) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -49,10 +51,10 @@ const NavBar = ({ isScrolled, searchMovies, setSearchValue, fetchMovies }) => {
           </form>
 
           <Link to="/account">
-            <button className="signInButton">Account</button>
+            <button className="accountButton">Account</button>
           </Link>
 
-          <button onClick={handleLogOut} className="signUpButton">
+          <button onClick={handleLogOut} className="logoutButton">
             Log Out
           </button>
         </div>

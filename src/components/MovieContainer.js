@@ -11,11 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReg } from "@fortawesome/free-regular-svg-icons";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const heartReg = <FontAwesomeIcon icon={faHeartReg} />;
-const circleInfo = <FontAwesomeIcon icon={faCircleInfo} />;
 
 const MovieContainer = ({ movie, selectMovie }) => {
   const [like, setLike] = useState(false);
@@ -34,7 +32,7 @@ const MovieContainer = ({ movie, selectMovie }) => {
         }),
       });
     } else {
-      alert("Please sign in to save a movie");
+      alert("Please sign in to save a movie.");
     }
   };
 

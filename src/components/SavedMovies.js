@@ -33,14 +33,14 @@ const SavedMovies = () => {
       await updateDoc(movieRef, {
         savedMovies: result,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <div>
-      <ul className="movieList">
+      <ul className="savedMovieList">
         {movies.map((movie, id) => {
           return (
             <li key={id}>

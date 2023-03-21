@@ -1,113 +1,3 @@
-.App {
-  text-align: center;
-  background: #000;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 2.5rem;
-  height: 6vh;
-}
-
-.homeNav {
-  position: fixed;
-  z-index: 100;
-  width: 98%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-  transition: all 0.75s ease;
-
-  &.scrolled {
-    background: #000;
-  } 
-}
-
-nav h1 {
-  font-size: 4rem;
-  text-transform: uppercase;
-  color: #e50914;
-  letter-spacing: 0.1rem;
-}
-
-.searchContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 2.25rem;
-  width: 25rem;
-  background: #000;
-  border: 0.2rem solid #fff;
-  padding: 1rem 0.5rem;
-  opacity: 0.7;
-
-  input {
-    height: 3rem;
-    width: 17.5rem;
-    margin-left: 1rem;
-    border: none;
-    color: #fff;
-    background: #000;
-    font-size: 1.6rem;
-    outline: none;
-
-    &::placeholder {
-      color: #fff;
-    }
-  }
-}
-
-.searchButton {
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 1.75rem;
-  background: none;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-    &:hover {
-      opacity: 0.8;
-    }
-}
-
-.searchBarAndAccountButtons {
-  display: flex;
-}
-
-.signInButton {
-  align-self: flex-start;
-  color: #fff;
-  background: none;
-  border: none;
-  padding: 1.5rem 2rem;
-  font-size: 1.75rem;
-  cursor: pointer;
-  margin: 0 2rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
-
-  &:hover {
-    opacity: 0.6;
-  }
-}
-
-.signUpButton {
-  align-self: flex-start;
-  background: #e50914;
-  color: #fff;
-  border: none;
-  padding: 1.5rem 2rem;
-  font-size: 1.75rem;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
 header {
   height: 95rem;
   background-position: center;
@@ -163,6 +53,7 @@ header {
   font-size: 1.75rem;
   cursor: pointer;
   margin-right: 2rem;
+  align-self: flex-start;
   transition: all 0.2s ease;
 
   &:hover {
@@ -211,8 +102,3 @@ header {
   height: 100%;
 }
 
-.movieList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}

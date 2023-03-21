@@ -1,7 +1,8 @@
-import "../scss/_global.scss";
-import "../scss/_home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../scss/_global.scss";
+import "../scss/_home.scss";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
@@ -33,13 +34,15 @@ const Home = () => {
   // isScrolled will determine whether the user has scrolled down from the top of the page
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const [status, setStatus] = useState(null);
+
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
   // 2. isScrolled will be passed to the HomeNavBar component
   // 3. The nav bar will be set to a class of "homeNav scrolled", triggering the CSS property (background: #000) to activate
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
-  }
+  };
 
   // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned based off the user's search
@@ -57,11 +60,15 @@ const Home = () => {
       }
     );
 
-    setMovieData(response.data.results);
-    setSelectedMovie(response.data.results[0]);
-
-    selectMovie(response.data.results[0]);
-    console.log(response)
+    if (response.data.results.length > 0) {
+      setMovieData(response.data.results);
+      setSelectedMovie(response.data.results[0]);
+      selectMovie(response.data.results[0]);
+    } else {
+      alert(
+        "Something went wrong. Please enter a valid movie title or try again later."
+      );
+    }
   };
 
   const fetchTrailer = async (id) => {
@@ -120,30 +127,29 @@ const Home = () => {
       >
         <HomeNavBar
           isScrolled={isScrolled}
-          searchMovies={searchMovies}
           setSearchValue={setSearchValue}
-          searchIcon={searchIcon}
           fetchMovies={fetchMovies}
+          searchMovies={searchMovies}
+          searchIcon={searchIcon}
         />
 
         <div className="movieContent">
           <div className="movieDetails">
             <h2 className="movieTitle">{selectedMovie.title}</h2>
             <p className="movieOverview">{selectedMovie.overview}</p>
-            <p className="movieRating"><span className="starIcon">{star}</span>&nbsp;{selectedMovie.vote_average ? selectedMovie.vote_average.toFixed(1) : null}</p>
-
-            <div className="movieDetailsButtons">
-              <button
-                className="watchTrailerButton"
-                onClick={() => setPlayVideo(true)}
-              >
-                {play}
-                &nbsp; Watch Trailer
-              </button>
-              {/* <button className="addToFavouritesButton">
-                {heartReg} &nbsp; Add to Favourites
-              </button> */}
-            </div>
+            <p className="movieRating">
+              <span className="starIcon">{star}</span>&nbsp;
+              {selectedMovie.vote_average
+                ? selectedMovie.vote_average.toFixed(1)
+                : null}
+            </p>
+            <button
+              className="watchTrailerButton"
+              onClick={() => setPlayVideo(true)}
+            >
+              {play}
+              &nbsp; Watch Trailer
+            </button>
           </div>
 
           {playVideo ? (
