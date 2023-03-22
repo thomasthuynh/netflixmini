@@ -9,17 +9,17 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, createAccount } = useContext(AuthContextProvider);
+  const { createAccount } = useContext(AuthContextProvider);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+    
     try {
       await createAccount(email, password);
       navigate("/");
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
       setError(err.message);
     }
   };

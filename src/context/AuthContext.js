@@ -9,12 +9,14 @@ export const AuthContextProvider = ({children}) => {
 
 const [user, setUser] = useState({});
 
-const createAccount = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+const createAccount = async (email, password) => {
+    
+    await createUserWithEmailAndPassword(auth, email, password);
 
-    setDoc(doc(db, "userAccount", email), {
+    setDoc(doc(db, "users", email), {
         savedMovies:[]
     })
+
 }
 
 const signIn = (email, password) => {

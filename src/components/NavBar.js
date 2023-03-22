@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 
 const NavBar = () => {
-  const { logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
@@ -26,15 +26,27 @@ const NavBar = () => {
         <Link onClick={loadLandingPage}>Miniflix</Link>
       </h1>
 
-      <div className="searchBarAndAccountButtons">
-        <Link to="/account">
-          <button className="accountButton">Account</button>
-        </Link>
+      {user?.email ? (
+        <div className="searchBarAndAccountButtons">
+          <Link to="/account">
+            <button className="accountButton">Account</button>
+          </Link>
 
-        <button onClick={handleLogOut} className="logoutButton">
-          Log Out
-        </button>
-      </div>
+          <button onClick={handleLogOut} className="logoutButton">
+            Log Out
+          </button>
+        </div>
+      ) : (
+        <div className="searchBarAndAccountButtons">
+          <Link to="/signin">
+            <button className="signInButton">Sign In</button>
+          </Link>
+
+          <Link to="/signup">
+            <button className="signUpButton">Sign Up</button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
