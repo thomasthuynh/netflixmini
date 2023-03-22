@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import HomeNavBar from "./HomeNavBar";
@@ -34,7 +33,7 @@ const Home = () => {
   // isScrolled will determine whether the user has scrolled down from the top of the page
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const [status, setStatus] = useState(null);
+  const [trailerOverlay, setTrailerOverlay] = useState("")
 
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
@@ -109,6 +108,21 @@ const Home = () => {
     fetchMovies(searchValue);
   };
 
+  // The playTrailer function will play the movie trailer, if there is one available
+  const playTrailer = () => {
+    if (trailer !== undefined) {
+      setPlayVideo(true)
+      setTrailerOverlay("trailerOverlay")
+    } else {
+      alert("Sorry, there is no trailer available for the selected movie.")
+    }
+  }
+
+  const closeTrailer = () => {
+    setPlayVideo(false);
+    setTrailerOverlay ("trailerOverlay trailerOverlayOff")
+  }
+
   // This useEffect will run the fetchMovies function on page load
   useEffect(() => {
     fetchMovies();
@@ -127,6 +141,7 @@ const Home = () => {
       >
         <HomeNavBar
           isScrolled={isScrolled}
+          searchValue={searchValue}
           setSearchValue={setSearchValue}
           fetchMovies={fetchMovies}
           searchMovies={searchMovies}
@@ -145,7 +160,8 @@ const Home = () => {
             </p>
             <button
               className="watchTrailerButton"
-              onClick={() => setPlayVideo(true)}
+              // onClick={() => setPlayVideo(true)}
+              onClick={playTrailer}
             >
               {play}
               &nbsp; Watch Trailer
@@ -167,7 +183,8 @@ const Home = () => {
               />
               <button
                 className="closeTrailerButton"
-                onClick={() => setPlayVideo(false)}
+                // onClick={() => setPlayVideo(false)}
+                onClick={closeTrailer}
               >
                 {xMark} &nbsp; Close
               </button>
@@ -176,6 +193,7 @@ const Home = () => {
             <div></div>
           )}
         </div>
+        <div className={trailerOverlay}></div>
       </header>
 
       <section className="trendingMovies">

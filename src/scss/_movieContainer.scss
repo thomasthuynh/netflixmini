@@ -18,6 +18,19 @@
     position: relative;
 }
 
+.posterImageNone {
+    background: #fff;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+    .posterOverlay {
+        margin-bottom: 0;
+    }
+}
+
 .posterOverlay {
     position: absolute;
     top: 0;

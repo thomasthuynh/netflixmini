@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = ({ isScrolled, setSearchValue, searchMovies, fetchMovies }) => {
+const HomeNavBar = ({ isScrolled, searchValue, setSearchValue, searchMovies, fetchMovies }) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const NavBar = ({ isScrolled, setSearchValue, searchMovies, fetchMovies }) => {
 
   const loadLandingPage = (e) => {
     e.preventDefault()
+    setSearchValue("");
     navigate("/");
     fetchMovies();
   }
@@ -64,6 +65,7 @@ const NavBar = ({ isScrolled, setSearchValue, searchMovies, fetchMovies }) => {
             <div className="searchContainer">
               <input
                 type="text"
+                value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search"
               />
@@ -86,4 +88,4 @@ const NavBar = ({ isScrolled, setSearchValue, searchMovies, fetchMovies }) => {
   );
 };
 
-export default NavBar;
+export default HomeNavBar;

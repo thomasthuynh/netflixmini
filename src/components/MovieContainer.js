@@ -38,7 +38,7 @@ const MovieContainer = ({ movie, selectMovie }) => {
 
   return (
     <li>
-      {movie.poster_path ? (
+      {/* {movie.poster_path ? (
         <div className="posterImage">
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -49,6 +49,26 @@ const MovieContainer = ({ movie, selectMovie }) => {
         </div>
       ) : (
         <p>No Image Available</p>
+      )} */}
+      {movie.poster_path ? (
+        <div className="posterImage">
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <div
+            onClick={() => selectMovie(movie)}
+            className="posterOverlay"
+          ></div>
+        </div>
+      ) : (
+        <div className="posterImage posterImageNone">
+          <p>No Image Available</p>
+          <div
+            onClick={() => selectMovie(movie)}
+            className="posterOverlay"
+          ></div>
+        </div>
       )}
       <div className="infoAndLikeContainer">
         <p className="movieTitle">{movie.title}</p>
