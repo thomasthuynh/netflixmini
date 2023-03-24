@@ -8,7 +8,7 @@ const Account = () => {
     <div className="accountContainer">
       <header className="accountHeader">
         <NavBar />
-        <p>My Account</p>
+        <p>My Movies</p>
       </header>
       <SavedMovies />
     </div>

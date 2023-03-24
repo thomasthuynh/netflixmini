@@ -54,7 +54,7 @@ const Home = () => {
       {
         params: {
           api_key: "02a015f767f49fbd46124014022d6a5c",
-          query: searchValue,
+          query: searchValue
         },
       }
     );
@@ -63,6 +63,13 @@ const Home = () => {
       setMovieData(response.data.results);
       setSelectedMovie(response.data.results[0]);
       selectMovie(response.data.results[0]);
+
+      if (lookupType == "search") {
+        setMovieData(response.data.results.slice(0, 10));
+        setSelectedMovie(response.data.results[0]);
+        selectMovie(response.data.results[0]);
+      }
+
     } else {
       alert(
         "Something went wrong. Please enter a valid movie title or try again later."
@@ -99,6 +106,7 @@ const Home = () => {
     setPlayVideo(false);
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
+    setTrailerOverlay ("trailerOverlay trailerOverlayOff")
     window.scrollTo(0, 0);
   };
 
@@ -113,6 +121,7 @@ const Home = () => {
     if (trailer !== undefined) {
       setPlayVideo(true)
       setTrailerOverlay("trailerOverlay")
+
     } else {
       alert("Sorry, there is no trailer available for the selected movie.")
     }
@@ -134,7 +143,7 @@ const Home = () => {
         style={
           selectedMovie.backdrop_path
             ? {
-                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
+                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.35)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
               }
             : null
         }

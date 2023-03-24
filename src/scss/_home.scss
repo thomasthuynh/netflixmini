@@ -79,7 +79,7 @@ header {
 
 .moviePlayer {
   position: absolute;
-  z-index: 20;
+  z-index: 30;
   top: 10rem;
   bottom: 10rem;
   left: 20rem;
@@ -92,8 +92,9 @@ header {
 }
 
 .trailerOverlay {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.8);
   position: absolute;
+  z-index: 20;
   top: 0;
   bottom: 0;
   left: 0;

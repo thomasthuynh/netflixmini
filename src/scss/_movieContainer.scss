@@ -19,12 +19,13 @@
 }
 
 .posterImageNone {
-    background: #fff;
+    background: #5f5c5c;
     height: 93%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    color: #fff;
 
     .posterOverlay {
         margin-bottom: 0;
@@ -69,4 +70,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.movieTitle {
+    width: 75%;
 }

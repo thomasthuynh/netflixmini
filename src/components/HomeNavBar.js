@@ -33,7 +33,7 @@ const HomeNavBar = ({ isScrolled, searchValue, setSearchValue, searchMovies, fet
   return (
     <nav className={isScrolled ? "homeNav scrolled" : "homeNav"}>
       <h1>
-        <Link onClick={loadLandingPage}>Miniflix</Link>
+        <Link onClick={loadLandingPage}>Netflix <span className="mini">Mini</span></Link>
       </h1>
 
       {user?.email ? (
@@ -42,6 +42,7 @@ const HomeNavBar = ({ isScrolled, searchValue, setSearchValue, searchMovies, fet
             <div className="searchContainer">
               <input
                 type="text"
+                value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search"
               />

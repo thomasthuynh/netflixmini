@@ -48,7 +48,7 @@ const SignIn = () => {
           </form>
 
           <p className="signUpText">
-            New to Miniflix? <Link to="/signUp">Sign up now</Link>
+            New to Netflix Mini? <Link to="/signUp">Sign up now</Link>
           </p>
         </div>
       </div>

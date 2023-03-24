@@ -23,7 +23,7 @@ const NavBar = () => {
   return (
     <nav>
       <h1>
-        <Link onClick={loadLandingPage}>Miniflix</Link>
+      <Link onClick={loadLandingPage}>Netflix <span className="mini">Mini</span></Link>
       </h1>
 
       {user?.email ? (

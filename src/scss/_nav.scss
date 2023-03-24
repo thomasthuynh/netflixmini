@@ -10,6 +10,15 @@ nav {
         color: #e50914;
         letter-spacing: 0.1rem;
     }
+
+    span {
+      font-size: 2rem;
+      padding-left: 0.75rem;
+    }
+
+    a {
+      display: flex;
+    }
   }
 
   .homeNav {
