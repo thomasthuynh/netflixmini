@@ -2,14 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import "../scss/_signInSignUp.scss";
 import AuthContextProvider from "../context/AuthContext";
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, signIn } = useContext(AuthContextProvider);
+  const { signIn } = useContext(AuthContextProvider);
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
@@ -19,7 +18,6 @@ const SignIn = () => {
       await signIn(email, password);
       navigate("/");
     } catch (err) {
-      console.log(err);
       setError(err.message);
     }
   };
@@ -30,7 +28,7 @@ const SignIn = () => {
 
       <div className="signInFormContainer">
         <div className="signInForm">
-          <h1>Sign In</h1>
+          <h2>Sign In</h2>
           {error ? <p className="errorMessage">{error}</p> : null}
           <form onSubmit={handleSignIn}>
             <input
@@ -44,10 +42,10 @@ const SignIn = () => {
               type="password"
               placeholder="Password"
             />
-            <button>Sign In</button>
+            <button type="submit">Sign In</button>
           </form>
 
-          <p className="signUpText">
+          <p className="signInText">
             New to Netflix Mini? <Link to="/signUp">Sign up now</Link>
           </p>
         </div>

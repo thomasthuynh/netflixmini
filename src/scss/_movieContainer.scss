@@ -12,24 +12,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
   }
 
 .posterImage {
     position: relative;
-}
-
-.posterImageNone {
-    background: #5f5c5c;
-    height: 93%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: #fff;
-
-    .posterOverlay {
-        margin-bottom: 0;
-    }
 }
 
 .posterOverlay {
@@ -48,9 +40,22 @@
     }
 }
 
+.posterImageNone {
+    background: #5f5c5c;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #fff;
+
+    .posterOverlay {
+        margin-bottom: 0;
+    }
+}
+
 .likeIcon {
     font-size: 3rem;
-    margin-right: 1.5rem;
     cursor: pointer;
 
     &:hover,
@@ -65,8 +70,8 @@
     background: #e50914;
     color: #fff;
     margin-top: -0.25rem;
-    padding-left: 1rem;
-    height: 10%;
+    padding: 0 1.5rem;
+    height: 6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

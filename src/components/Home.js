@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import "../scss/_global.scss";
 import "../scss/_home.scss";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
@@ -9,12 +9,10 @@ import YouTube from "react-youtube";
 // Font imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 const play = <FontAwesomeIcon icon={faPlay} />;
 const star = <FontAwesomeIcon icon={faStar} />;
 const xMark = <FontAwesomeIcon icon={faCircleXmark} />;
@@ -32,8 +30,8 @@ const Home = () => {
   const [playVideo, setPlayVideo] = useState(false);
   // isScrolled will determine whether the user has scrolled down from the top of the page
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const [trailerOverlay, setTrailerOverlay] = useState("")
+  // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
+  const [trailerOverlay, setTrailerOverlay] = useState("");
 
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
@@ -44,7 +42,8 @@ const Home = () => {
   };
 
   // The fetchMovies function will:
-  // 1. Set the movieData state variable to the top twenty movies returned based off the user's search
+  // 1. Set the movieData state variable to the top twenty movies returned. If the user is searching for a specific movie, only the top ten results will be returned.
+  // Note: If there are no results returned, (eg. the user enters an invalid search input), the alert will pop up
   // 2. Set the selectedMovie state variable to the first movie returned in the array
   // 3. The selectMovie function will run taking the first movie returned in the array as an argument
   const fetchMovies = async (searchValue) => {
@@ -54,7 +53,7 @@ const Home = () => {
       {
         params: {
           api_key: "02a015f767f49fbd46124014022d6a5c",
-          query: searchValue
+          query: searchValue,
         },
       }
     );
@@ -64,12 +63,11 @@ const Home = () => {
       setSelectedMovie(response.data.results[0]);
       selectMovie(response.data.results[0]);
 
-      if (lookupType == "search") {
+      if (lookupType === "search") {
         setMovieData(response.data.results.slice(0, 10));
         setSelectedMovie(response.data.results[0]);
         selectMovie(response.data.results[0]);
       }
-
     } else {
       alert(
         "Something went wrong. Please enter a valid movie title or try again later."
@@ -77,6 +75,9 @@ const Home = () => {
     }
   };
 
+  // The fetchTrailer function will:
+  // 1. Retrieve the video data for the movies
+  // 2. Search for a value titled "Official Trailer"/"official trailer". If found, trailerVideo will be assigned the value returned and set to the trailer state variable (setTrailer). If not found, it will be assigned the first property in the array will be assigned.
   const fetchTrailer = async (id) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}`,
@@ -101,12 +102,13 @@ const Home = () => {
   // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
   // 2. Fetch the trailer (fetchTrailer)
   // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
-  // 4. The application will then scroll back to the top of the page
+  // 4. The trailer overlay will be turned off, if opened from a previous movie selection
+  // 5. The application will then scroll back to the top of the page
   const selectMovie = (movie) => {
     setPlayVideo(false);
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
-    setTrailerOverlay ("trailerOverlay trailerOverlayOff")
+    setTrailerOverlay("trailerOverlay trailerOverlayOff");
     window.scrollTo(0, 0);
   };
 
@@ -116,47 +118,46 @@ const Home = () => {
     fetchMovies(searchValue);
   };
 
-  // The playTrailer function will play the movie trailer, if there is one available
+  // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed
   const playTrailer = () => {
     if (trailer !== undefined) {
-      setPlayVideo(true)
-      setTrailerOverlay("trailerOverlay")
-
+      setPlayVideo(true);
+      setTrailerOverlay("trailerOverlay");
     } else {
-      alert("Sorry, there is no trailer available for the selected movie.")
+      alert("Sorry, there is no trailer available for the selected movie.");
     }
-  }
+  };
 
+  // The closeTrailer function will close the trailer playing and turn off the background overlay
   const closeTrailer = () => {
     setPlayVideo(false);
-    setTrailerOverlay ("trailerOverlay trailerOverlayOff")
-  }
+    setTrailerOverlay("trailerOverlay trailerOverlayOff");
+  };
 
-  // This useEffect will run the fetchMovies function on page load
+  // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
     fetchMovies();
   }, []);
 
   return (
     <div className="App">
+      <HomeNavBar
+        isScrolled={isScrolled}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        fetchMovies={fetchMovies}
+        searchMovies={searchMovies}
+      />
       <header
+        className="homeHeader"
         style={
           selectedMovie.backdrop_path
             ? {
-                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.35)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
+                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
               }
             : null
         }
       >
-        <HomeNavBar
-          isScrolled={isScrolled}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          fetchMovies={fetchMovies}
-          searchMovies={searchMovies}
-          searchIcon={searchIcon}
-        />
-
         <div className="movieContent">
           <div className="movieDetails">
             <h2 className="movieTitle">{selectedMovie.title}</h2>
@@ -167,17 +168,13 @@ const Home = () => {
                 ? selectedMovie.vote_average.toFixed(1)
                 : null}
             </p>
-            <button
-              className="watchTrailerButton"
-              // onClick={() => setPlayVideo(true)}
-              onClick={playTrailer}
-            >
+            <button className="watchTrailerButton" onClick={playTrailer}>
               {play}
               &nbsp; Watch Trailer
             </button>
           </div>
 
-          {playVideo ? (
+          {playVideo && (
             <div className="moviePlayer">
               <YouTube
                 videoId={trailer.key}
@@ -190,16 +187,10 @@ const Home = () => {
                   },
                 }}
               />
-              <button
-                className="closeTrailerButton"
-                // onClick={() => setPlayVideo(false)}
-                onClick={closeTrailer}
-              >
+              <button className="closeTrailerButton" onClick={closeTrailer}>
                 {xMark} &nbsp; Close
               </button>
             </div>
-          ) : (
-            <div></div>
           )}
         </div>
         <div className={trailerOverlay}></div>

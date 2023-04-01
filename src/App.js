@@ -9,22 +9,24 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <AuthContextProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movielist" element={<MovieContainer />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/account"
-          element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </AuthContextProvider>
+    <div className="wrapper">
+      <AuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movielist" element={<MovieContainer />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthContextProvider>
+    </div>
   );
 }
 

@@ -9,7 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const HomeNavBar = ({ isScrolled, searchValue, setSearchValue, searchMovies, fetchMovies }) => {
+const HomeNavBar = ({
+  isScrolled,
+  searchValue,
+  setSearchValue,
+  searchMovies,
+  fetchMovies,
+}) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,21 +25,23 @@ const HomeNavBar = ({ isScrolled, searchValue, setSearchValue, searchMovies, fet
       await logOut();
       navigate("/");
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 
   const loadLandingPage = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setSearchValue("");
     navigate("/");
     fetchMovies();
-  }
+  };
 
   return (
     <nav className={isScrolled ? "homeNav scrolled" : "homeNav"}>
       <h1>
-        <Link onClick={loadLandingPage}>Netflix <span className="mini">Mini</span></Link>
+        <Link onClick={loadLandingPage}>
+          Netflix <span className="mini">Mini</span>
+        </Link>
       </h1>
 
       {user?.email ? (

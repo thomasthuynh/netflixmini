@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import AuthContextProvider from "../context/AuthContext";
 import { useContext } from "react";
 import { db } from "../firebase";
-import { updateDoc, doc, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 
 // Font imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,13 +17,20 @@ const SavedMovies = () => {
   const [movies, setMovies] = useState([]);
   const { user } = useContext(AuthContextProvider);
 
+  // In movieRef:
+  // "doc" is a Firebase Firestore function which is used to create a reference to a specific document in the database
+  // "db" is a variable that represents the Firestore database
+  // "users" is a string that specifies the name of the Firestore colllection containing the referenced document
+  // "user?.email" is a string that specifies the ID of the Firestore document referenced
+  const movieRef = doc(db, "users", `${user?.email}`);
+
+  // "onSnapshot" is a Firebase method which sets up a real time listener that triggers a callback function everytime data in the movieRef collection changes
+  // The callback function passed to "onSnapshot" retrieves movie data from "doc" using the "data()" method and updates the movies state variable (setMovies)
   useEffect(() => {
-    onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
+    onSnapshot(movieRef, (doc) => {
       setMovies(doc.data()?.savedMovies);
     });
   }, [user?.email]);
-
-  const movieRef = doc(db, "users", `${user?.email}`);
 
   const deleteMovie = async (passedId) => {
     try {
@@ -34,7 +41,7 @@ const SavedMovies = () => {
         savedMovies: result,
       });
     } catch (err) {
-      console.log(err);
+      alert(err.message);
     }
   };
 
@@ -50,16 +57,18 @@ const SavedMovies = () => {
                     src={`https://image.tmdb.org/t/p/w500/${movie.img}`}
                     alt={movie.title}
                   />
-                  <div className="posterOverlay"></div>
                 </div>
               ) : (
                 <p>No Image Available</p>
               )}
               <div className="infoAndDeleteContainer">
                 <p className="movieTitle">{movie.title}</p>
-                <p onClick={() => {
-                  deleteMovie(movie.id)
-                }} className="likeIcon">
+                <p
+                  onClick={() => {
+                    deleteMovie(movie.id);
+                  }}
+                  className="trashIcon"
+                >
                   {trashCan}
                 </p>
               </div>

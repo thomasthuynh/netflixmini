@@ -1,8 +1,8 @@
-header {
-  height: 95rem;
-  background-position: center;
+.homeHeader {
+  height: 100vh;
   background-size: cover;
-  position: relative;
+  background-position: center top;
+  margin-top: -11rem;
 }
 
 .movieContent {
@@ -14,7 +14,6 @@ header {
 
 .movieDetails {
   width: 50%;
-  text-align: left;
   padding: 0 4rem;
   color: #fff;
   display: flex;
@@ -23,6 +22,7 @@ header {
 
   h2 {
     font-size: 6rem;
+    width: 100%;
   }
 
   p {
@@ -43,38 +43,24 @@ header {
   padding-right: 0.75rem;
 }
 
-.movieDetailsButtons {
-  display: flex;
-}
-
-.watchTrailerButton {
+.watchTrailerButton,
+.closeTrailerButton {
   background: #fff;
-  border: 0.1rem solid #fff;
-  padding: 1.5rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1.75rem;
-  cursor: pointer;
-  margin-right: 2rem;
+  padding: 1.5rem 2rem;
   align-self: flex-start;
-  transition: all 0.2s ease;
+  cursor: pointer;
 
-  &:hover {
-    opacity: 0.8;
+  &:hover,
+  &:focus {
+    opacity: 0.85;
   }
 }
 
 .closeTrailerButton {
-  background: #fff;
-  border: 0.1rem solid #fff;
-  padding: 1.5rem 2rem;
-  margin-top: 1rem;
-  font-size: 1.75rem;
-  cursor: pointer;
-  margin-right: 2rem;
-  transition: all 0.2s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
+  margin-top: 2rem;
 }
 
 .moviePlayer {

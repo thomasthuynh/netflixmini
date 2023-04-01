@@ -2,8 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import "../scss/_signInSignUp.scss";
 import AuthContextProvider from "../context/AuthContext";
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +18,6 @@ const SignUp = () => {
       await createAccount(email, password);
       navigate("/");
     } catch (err) {
-      console.log(err.message);
       setError(err.message);
     }
   };
@@ -28,9 +26,9 @@ const SignUp = () => {
     <div className="signUpContainer">
       <NavBar />
 
-      <div className="signInFormContainer">
-        <div className="signInForm">
-          <h1>Sign Up</h1>
+      <div className="signUpFormContainer">
+        <div className="signUpForm">
+          <h2>Sign Up</h2>
           {error ? <p className="errorMessage">{error}</p> : null}
 
           <form onSubmit={handleSignUp}>
@@ -44,7 +42,7 @@ const SignUp = () => {
               type="password"
               placeholder="Password"
             />
-            <button>Sign Up</button>
+            <button type="submit">Sign Up</button>
           </form>
 
           <p className="signUpText">

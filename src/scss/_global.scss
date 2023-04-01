@@ -3,14 +3,26 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    background: #000;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 240rem;
+    margin: 0 auto;
+}
+
 h1, h2, h3, h4, p, ul {
     margin: 0;
     padding: 0;
 }
 
 li {
-    width: 18%;
+    width: 17%;
     margin: 2.5rem 1rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
 }
 
 ul {

@@ -1,18 +1,21 @@
 .signInContainer,
 .signUpContainer {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://assets.nflxext.com/ffe/siteui/vlv3/d54727b4-2ad9-4e71-bb48-0899f55f103a/49d3aeb8-486a-4e7c-9af2-6cced7625add/CA-en-20230220-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
-    color: #fff;
 }
 
-.signInFormContainer {
+.signInFormContainer,
+.signUpFormContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(90vh - 5rem);
 }
 
-.signInForm {
+.signInForm,
+.signUpForm {
     background: rgba(0, 0, 0, 0.75);
     border-radius: 0.5rem;
     display: flex;
@@ -20,11 +23,11 @@
     align-items: center;
     height: 60rem;
     width: 45rem;
-    font-size: 3rem;
+    color: #fff;
 
-    h1 {
+    h2 {
         padding-top: 4rem;
-        padding-bottom: 2.5rem;
+        padding-bottom: 2rem;
         font-size: 4rem;
         font-weight: bold;
     }
@@ -32,7 +35,7 @@
     .errorMessage {
         background: rgb(194, 66, 66);
         padding: 1.5rem;
-        margin-top: -1rem;
+        margin-top: -0.5rem;
         font-size: 1.5rem;
     }
 
@@ -49,7 +52,6 @@
     input {
         margin-bottom: 2.5rem;
         padding: 1rem;
-        border: 0.1rem solid #fff;
         border-radius: 0.5rem;
         height: 3rem;
         width: 25rem;
@@ -76,11 +78,12 @@
         transition: all 0.2s ease;
       
         &:hover {
-          opacity: 0.6;
+          opacity: 0.75;
         }
     }
 }
 
+.signInText,
 .signUpText {
     color: rgb(115, 115, 115);
 
