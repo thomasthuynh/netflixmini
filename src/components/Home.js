@@ -146,8 +146,8 @@ const Home = () => {
 
   useEffect(useCallback(() => {
     fetchMovies();
-  }, [fetchMovies, searchMovies]), []);
-  
+  }, [searchValue]), []);
+
   return (
     <div className="App">
       <HomeNavBar
