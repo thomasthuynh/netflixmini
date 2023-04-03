@@ -68,12 +68,18 @@ const Home = () => {
     if (response.data.results.length > 0) {
       setMovieData(response.data.results);
       setSelectedMovie(response.data.results[0]);
-      selectMovie(response.data.results[0]);
+      // selectMovie(response.data.results[0]);
+
+      const firstResult = response.data.results[0]
+      selectMovie(firstResult);
 
       if (lookupType === "search") {
         setMovieData(response.data.results.slice(0, 10));
         setSelectedMovie(response.data.results[0]);
-        selectMovie(response.data.results[0]);
+        // selectMovie(response.data.results[0]);
+
+        const firstResult = response.data.results[0]
+        selectMovie(firstResult);
       }
     } else {
       alert(
@@ -143,8 +149,8 @@ const Home = () => {
 
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    fetchMovies()
-  }, [])
+    fetchMovies(searchValue)
+  }, [fetchMovies])
 
   return (
     <div className="App">
