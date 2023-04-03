@@ -17,7 +17,6 @@ const play = <FontAwesomeIcon icon={faPlay} />;
 const star = <FontAwesomeIcon icon={faStar} />;
 const xMark = <FontAwesomeIcon icon={faCircleXmark} />;
 
-
 const Home = () => {
   // movieData will hold data for the top twenty trending movies
   const [movieData, setMovieData] = useState([]);
@@ -34,8 +33,6 @@ const Home = () => {
   // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [trailerOverlay, setTrailerOverlay] = useState("");
 
-
-
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
   // 2. isScrolled will be passed to the HomeNavBar component
@@ -46,14 +43,14 @@ const Home = () => {
 
   // window.onscroll = useCallback(() => {
   //   setIsScrolled(window.pageYOffset === 0 ? false : true);
-  // }, []) 
+  // }, [])
 
   // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned. If the user is searching for a specific movie, only the top ten results will be returned.
   // Note: If there are no results returned, (eg. the user enters an invalid search input), the alert will pop up
   // 2. Set the selectedMovie state variable to the first movie returned in the array
   // 3. The selectMovie function will run taking the first movie returned in the array as an argument
-  const fetchMovies = useCallback(async (searchValue) => {
+  const fetchMovies = async (searchValue) => {
     const lookupType = searchValue ? "search" : "discover";
     const response = await axios.get(
       `https://api.themoviedb.org/3/${lookupType}/movie`,
@@ -68,25 +65,19 @@ const Home = () => {
     if (response.data.results.length > 0) {
       setMovieData(response.data.results);
       setSelectedMovie(response.data.results[0]);
-      // selectMovie(response.data.results[0]);
-
-      const firstResult = response.data.results[0]
-      selectMovie(firstResult);
+      selectMovie(response.data.results[0]);
 
       if (lookupType === "search") {
         setMovieData(response.data.results.slice(0, 10));
         setSelectedMovie(response.data.results[0]);
-        // selectMovie(response.data.results[0]);
-
-        const firstResult = response.data.results[0]
-        selectMovie(firstResult);
+        selectMovie(response.data.results[0]);
       }
     } else {
       alert(
         "Something went wrong. Please enter a valid movie title or try again later."
       );
     }
-  }, []);
+  };
 
   // The fetchTrailer function will:
   // 1. Retrieve the video data for the movies
@@ -148,9 +139,12 @@ const Home = () => {
   };
 
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
+
+  const getTrendingMovies = fetchMovies;
+
   useEffect(() => {
-    fetchMovies(searchValue)
-  }, [fetchMovies])
+    getTrendingMovies();
+  }, []);
 
   return (
     <div className="App">
