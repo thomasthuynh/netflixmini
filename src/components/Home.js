@@ -1,7 +1,7 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
@@ -46,7 +46,36 @@ const Home = () => {
   // Note: If there are no results returned, (eg. the user enters an invalid search input), the alert will pop up
   // 2. Set the selectedMovie state variable to the first movie returned in the array
   // 3. The selectMovie function will run taking the first movie returned in the array as an argument
-  const fetchMovies = async (searchValue) => {
+  // const fetchMovies = async (searchValue) => {
+  //   const lookupType = searchValue ? "search" : "discover";
+  //   const response = await axios.get(
+  //     `https://api.themoviedb.org/3/${lookupType}/movie`,
+  //     {
+  //       params: {
+  //         api_key: "02a015f767f49fbd46124014022d6a5c",
+  //         query: searchValue,
+  //       },
+  //     }
+  //   );
+
+  //   if (response.data.results.length > 0) {
+  //     setMovieData(response.data.results);
+  //     setSelectedMovie(response.data.results[0]);
+  //     selectMovie(response.data.results[0]);
+
+  //     if (lookupType === "search") {
+  //       setMovieData(response.data.results.slice(0, 10));
+  //       setSelectedMovie(response.data.results[0]);
+  //       selectMovie(response.data.results[0]);
+  //     }
+  //   } else {
+  //     alert(
+  //       "Something went wrong. Please enter a valid movie title or try again later."
+  //     );
+  //   }
+  // };
+
+  const fetchMovies = useCallback(async (searchValue) => {
     const lookupType = searchValue ? "search" : "discover";
     const response = await axios.get(
       `https://api.themoviedb.org/3/${lookupType}/movie`,
@@ -73,7 +102,7 @@ const Home = () => {
         "Something went wrong. Please enter a valid movie title or try again later."
       );
     }
-  };
+  });
 
   // The fetchTrailer function will:
   // 1. Retrieve the video data for the movies
@@ -137,8 +166,7 @@ const Home = () => {
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
     fetchMovies();
-  }, [], [searchValue]);
-
+  }, []);
 
   return (
     <div className="App">
