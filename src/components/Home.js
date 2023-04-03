@@ -102,7 +102,7 @@ const Home = () => {
         "Something went wrong. Please enter a valid movie title or try again later."
       );
     }
-  }, [searchValue]);
+  }, []);
 
   // The fetchTrailer function will:
   // 1. Retrieve the video data for the movies
