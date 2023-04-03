@@ -1,7 +1,7 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
@@ -33,6 +33,8 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [trailerOverlay, setTrailerOverlay] = useState("");
+
+
 
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
@@ -141,8 +143,8 @@ const Home = () => {
 
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    fetchMovies(searchValue)
-  }, [fetchMovies, searchValue])
+    fetchMovies()
+  }, [])
 
   return (
     <div className="App">
