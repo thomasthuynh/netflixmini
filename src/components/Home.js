@@ -146,7 +146,7 @@ const Home = () => {
 
   useEffect(useCallback(() => {
     fetchMovies();
-  }, [searchValue]), []);
+  }, [fetchMovies, searchValue]), []);
 
   return (
     <div className="App">
