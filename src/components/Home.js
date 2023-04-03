@@ -141,8 +141,8 @@ const Home = () => {
 
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    fetchMovies()
-  }, [searchValue])
+    fetchMovies(searchValue)
+  }, [])
 
   return (
     <div className="App">
