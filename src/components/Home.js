@@ -42,9 +42,9 @@ const Home = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
   };
 
-  window.onscroll = useCallback(() => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
-  }, []) 
+  // window.onscroll = useCallback(() => {
+  //   setIsScrolled(window.pageYOffset === 0 ? false : true);
+  // }, []) 
 
   // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned. If the user is searching for a specific movie, only the top ten results will be returned.
@@ -140,18 +140,9 @@ const Home = () => {
   };
 
   // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
-  useEffect((
-
-    useCallback(() => {
-      fetchMovies()
-    }, [searchValue])
-
-  ), []);
-
-  // useCallback(() => {
-  //   fetchMovies();
-  // }, [])
-
+  useEffect(() => {
+    fetchMovies()
+  }, [searchValue])
 
   return (
     <div className="App">
