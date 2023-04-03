@@ -1,7 +1,7 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
@@ -138,12 +138,38 @@ const Home = () => {
     setTrailerOverlay("trailerOverlay trailerOverlayOff");
   };
 
-  // This useEffect will run the fetchMovies function on page load, displaying the top twenty trending movies
-
-  const getTrendingMovies = fetchMovies;
-
+  // This useEffect will run the loadTrendingMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    getTrendingMovies();
+    const loadTrendingMovies = async (searchValue) => {
+      const lookupType = searchValue ? "search" : "discover";
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/${lookupType}/movie`,
+        {
+          params: {
+            api_key: "02a015f767f49fbd46124014022d6a5c",
+            query: searchValue,
+          },
+        }
+      );
+
+      if (response.data.results.length > 0) {
+        setMovieData(response.data.results);
+        setSelectedMovie(response.data.results[0]);
+        selectMovie(response.data.results[0]);
+
+        if (lookupType === "search") {
+          setMovieData(response.data.results.slice(0, 10));
+          setSelectedMovie(response.data.results[0]);
+          selectMovie(response.data.results[0]);
+        }
+      } else {
+        alert(
+          "Something went wrong. Please enter a valid movie title or try again later."
+        );
+      }
+    };
+
+    loadTrendingMovies();
   }, []);
 
   return (
