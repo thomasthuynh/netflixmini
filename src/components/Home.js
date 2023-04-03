@@ -1,7 +1,7 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";

@@ -30,7 +30,7 @@ const SavedMovies = () => {
     onSnapshot(movieRef, (doc) => {
       setMovies(doc.data()?.savedMovies);
     });
-  }, [user?.email], movieRef);
+  }, [user?.email, movieRef]);
 
   const deleteMovie = async (passedId) => {
     try {
