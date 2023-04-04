@@ -5,8 +5,6 @@ import { useState, useEffect, useCallback } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
-import AuthContextProvider from "../context/AuthContext";
-import { useContext } from "react";
 
 // Font imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,8 +32,6 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [trailerOverlay, setTrailerOverlay] = useState("");
-
-  const { user } = useContext(AuthContextProvider);
 
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
@@ -140,9 +136,9 @@ const Home = () => {
 
   // This useEffect will run the loadTrendingMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    fetchMovies();
-  }, [user?.email]);
-
+    fetchMovies()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   return (
