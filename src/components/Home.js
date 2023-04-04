@@ -1,10 +1,12 @@
 import "../scss/_global.scss";
 import "../scss/_home.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import HomeNavBar from "./HomeNavBar";
 import MovieContainer from "./MovieContainer";
 import YouTube from "react-youtube";
+import AuthContextProvider from "../context/AuthContext";
+import { useContext } from "react";
 
 // Font imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,6 +35,8 @@ const Home = () => {
   // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [trailerOverlay, setTrailerOverlay] = useState("");
 
+  const { user } = useContext(AuthContextProvider);
+
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
   // 2. isScrolled will be passed to the HomeNavBar component
@@ -41,9 +45,19 @@ const Home = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
   };
 
-  // window.onscroll = useCallback(() => {
-  //   setIsScrolled(window.pageYOffset === 0 ? false : true);
-  // }, [])
+   // The selectMovie function will be run when the user selects a movie and will:
+  // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
+  // 2. Fetch the trailer (fetchTrailer)
+  // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
+  // 4. The trailer overlay will be turned off, if opened from a previous movie selection
+  // 5. The application will then scroll back to the top of the page
+  const selectMovie = (movie) => {
+    setPlayVideo(false);
+    fetchTrailer(movie.id);
+    setSelectedMovie(movie);
+    setTrailerOverlay("trailerOverlay trailerOverlayOff");
+    window.scrollTo(0, 0);
+  };
 
   // The fetchMovies function will:
   // 1. Set the movieData state variable to the top twenty movies returned. If the user is searching for a specific movie, only the top ten results will be returned.
@@ -102,20 +116,6 @@ const Home = () => {
     setTrailer(trailerVideo ? trailerVideo : response.data.videos.results[0]);
   };
 
-  // The selectMovie function will be run when the user selects a movie and will:
-  // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
-  // 2. Fetch the trailer (fetchTrailer)
-  // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
-  // 4. The trailer overlay will be turned off, if opened from a previous movie selection
-  // 5. The application will then scroll back to the top of the page
-  const selectMovie = (movie) => {
-    setPlayVideo(false);
-    fetchTrailer(movie.id);
-    setSelectedMovie(movie);
-    setTrailerOverlay("trailerOverlay trailerOverlayOff");
-    window.scrollTo(0, 0);
-  };
-
   // The searchMovies function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument
   const searchMovies = (e) => {
     e.preventDefault();
@@ -140,37 +140,10 @@ const Home = () => {
 
   // This useEffect will run the loadTrendingMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    const loadTrendingMovies = async (searchValue) => {
-      const lookupType = searchValue ? "search" : "discover";
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/${lookupType}/movie`,
-        {
-          params: {
-            api_key: "02a015f767f49fbd46124014022d6a5c",
-            query: searchValue,
-          },
-        }
-      );
+    fetchMovies();
+  }, [user?.email]);
 
-      if (response.data.results.length > 0) {
-        setMovieData(response.data.results);
-        setSelectedMovie(response.data.results[0]);
-        selectMovie(response.data.results[0]);
 
-        if (lookupType === "search") {
-          setMovieData(response.data.results.slice(0, 10));
-          setSelectedMovie(response.data.results[0]);
-          selectMovie(response.data.results[0]);
-        }
-      } else {
-        alert(
-          "Something went wrong. Please enter a valid movie title or try again later."
-        );
-      }
-    };
-
-    loadTrendingMovies();
-  }, []);
 
   return (
     <div className="App">
