@@ -1,119 +1,162 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 2.5rem;
-    height: 6rem;
-    background: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  height: 6rem;
+  background: none;
 
+  h1 {
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: #e50914;
+    letter-spacing: 0.1rem;
+  }
+
+  span {
+    font-size: 2rem;
+    padding-left: 0.75rem;
+  }
+
+  a {
+    display: flex;
+  }
+}
+
+.homeNav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: all 0.75s ease;
+
+  &.scrolled {
+    background: #000;
+  }
+}
+
+.searchBarAndAccountButtons {
+  display: flex;
+  align-items: center;
+}
+
+.signInButton,
+.accountButton {
+  background: none;
+  color: #fff;
+  border: none;
+  margin: 1.5rem 4rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.85;
+  }
+}
+
+.signUpButton,
+.logoutButton {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.25rem;
+  width: 25rem;
+  background: #000;
+  border: 0.2rem solid #fff;
+  padding: 1rem 0.5rem;
+  opacity: 0.75;
+
+  input {
+    height: 3rem;
+    width: 17.5rem;
+    margin-left: 1rem;
+    border: none;
+    color: #fff;
+    background: #000;
+    font-size: 1.6rem;
+    outline: none;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+}
+
+.searchButton {
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 1.75rem;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
+}
+
+// Media queries
+
+@media (max-width: 1240px) {
+  nav {
     h1 {
-        font-size: 4rem;
-        text-transform: uppercase;
-        color: #e50914;
-        letter-spacing: 0.1rem;
+      font-size: 3.5rem;
     }
-
-    span {
-      font-size: 2rem;
-      padding-left: 0.75rem;
-    }
-
-    a {
-      display: flex;
-    }
-  }
-
-  .homeNav {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    transition: all 0.75s ease;
-  
-    &.scrolled {
-      background: #000;
-    } 
-  }
-
-  .searchBarAndAccountButtons {
-    display: flex;
   }
 
   .signInButton,
   .accountButton {
-    align-self: flex-start;
-    background: none;
-    color: #fff;
-    border: none;
-    margin: 1.5rem 4rem;
-    font-size: 1.75rem;
-    cursor: pointer;
-  
-    &:hover,
-    &:focus {
-      opacity: 0.85;
-    }
+    font-size: 1.65rem;
+    margin: 1.5rem 3rem;
   }
-  
+
   .signUpButton,
   .logoutButton {
-    align-self: flex-start;
-    background: #e50914;
-    color: #fff;
-    border: none;
-    border-radius: 0.75rem;
-    padding: 1.5rem 2rem;
-    font-size: 1.75rem;
-    cursor: pointer;
-  
-    &:hover {
-      opacity: 0.85;
-    }
+    font-size: 1.65rem;
+    padding: 1.25rem 1.75rem;
   }
 
   .searchContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 2.25rem;
-    width: 25rem;
-    background: #000;
-    border: 0.2rem solid #fff;
-    padding: 1rem 0.5rem;
-    opacity: 0.75;
-  
-    input {
-      height: 3rem;
-      width: 17.5rem;
-      margin-left: 1rem;
-      border: none;
-      color: #fff;
-      background: #000;
+    height: 2rem;
+    width: 23rem;
+  }
+
+  @media (max-width: 804px) {
+    .signInButton,
+    .accountButton {
       font-size: 1.6rem;
-      outline: none;
-  
-      &::placeholder {
-        color: #fff;
+      margin: 1.5rem 2rem;
+    }
+
+    .signUpButton,
+    .logoutButton {
+      font-size: 1.6rem;
+      padding: 1.15rem 1.5rem;
+    }
+
+    .searchContainer {
+      height: 1.8rem;
+      width: 20rem;
+
+      input {
+        width: 16rem;
+        font-size: 1.5rem;
       }
     }
   }
-
-  .searchButton {
-    height: 3.5rem;
-    width: 3.5rem;
-    font-size: 1.75rem;
-    background: none;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  
-      &:hover,
-      &:focus {
-        opacity: 0.75;
-      }
-  }
-  
-
-  // Media queries
-
-  @media (max-width: 1220px) {
-    
-  }
+}

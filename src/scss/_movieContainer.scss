@@ -1,82 +1,117 @@
 .trendingMovies {
-
-    h2 {
-        text-align: center;
-        color: #fff;
-        font-size: 4rem;
-        padding: 4rem 0;
-    }
+  h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 4rem;
+    padding: 4rem 0;
+  }
 }
 
 .movieList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
-    li {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+}
 
 .posterImage {
-    position: relative;
+  position: relative;
+  height: 85%;
+
+  img {
+    height: 100%;
+  }
 }
 
 .posterOverlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-bottom: 0.25rem;
-    transition: all 0.25s ease;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 0.25rem;
+  transition: all 0.25s ease;
 
-    &:hover {
-        background: #000;
-        opacity: 0.5;
-        cursor: pointer;
-    }
+  &:hover {
+    background: #000;
+    opacity: 0.5;
+    cursor: pointer;
+  }
 }
 
 .posterImageNone {
-    background: #5f5c5c;
-    height: 93%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: #fff;
+  background: #5f5c5c;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
 
-    .posterOverlay {
-        margin-bottom: 0;
-    }
+  .posterOverlay {
+    margin-bottom: 0;
+  }
 }
 
 .likeIcon {
-    font-size: 3rem;
-    cursor: pointer;
+  font-size: 3rem;
+  cursor: pointer;
 
-    &:hover,
-    &:focus {
-        opacity: 0.75;
-    }
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
 }
 
 .infoAndLikeContainer {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: #e50914;
-    color: #fff;
-    margin-top: -0.25rem;
-    padding: 0 1.5rem;
-    height: 6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #e50914;
+  color: #fff;
+  margin-top: -0.25rem;
+  padding: 0 1.5rem;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .movieTitle {
+    width: 80%;
+    height: 85%;
+    overflow: hidden;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+  }
 }
 
-.movieTitle {
-    width: 75%;
+@media (max-width: 1240px) {
+  .trendingMovies {
+    h2 {
+      font-size: 3.75rem;
+    }
+  }
+  .likeIcon {
+    font-size: 2.5rem;
+  }
+
+  .infoAndLikeContainer {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    padding: 0 1rem;
+  }
 }
+
+@media (max-width: 1044px) {
+
+    .posterImageNone {
+        font-size: 1.75rem;
+    }
+    .infoAndLikeContainer {
+        font-size: 1.2rem;
+    }
+  }
