@@ -151,7 +151,7 @@
   }
 
   .starIcon {
-    padding-right: 0.50rem;
+    padding-right: 0.5rem;
   }
 
   .watchTrailerButton,
@@ -167,7 +167,11 @@
     right: 7.5rem;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 740px) {
+    .homeHeader {
+      height: 75vh;
+    }
+
     .movieDetails {
       width: 75%;
       h2 {
@@ -188,8 +192,8 @@
     }
 
     .moviePlayer {
-      top: 30rem;
-      bottom: 30rem;
+      top: 20rem;
+      bottom: 20rem;
       left: 5rem;
       right: 5rem;
     }

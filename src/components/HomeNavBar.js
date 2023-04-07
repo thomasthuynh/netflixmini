@@ -2,7 +2,7 @@ import "../scss/_global.scss";
 import "../scss/_nav.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 
 // Font imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +19,25 @@ const HomeNavBar = ({
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Hamburger menu state variables
+  const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
+    "hamburgerMenu hamburgerMenuInactive"
+  );
+  const [hamburgerIcon, setHamburgerIcon] = useState("hamburgerIcon")
+  const [isClicked, setIsClicked] = useState(false);
+
+  const toggleHamburgerMenu = () => {
+    if (!isClicked) {
+      setIsClicked(true);
+      setHamburgerMenuToggle("hamburgerMenu");
+      setHamburgerIcon("hamburgerIcon close")
+    } else {
+      setIsClicked(false);
+      setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
+      setHamburgerIcon("hamburgerIcon")
+    }
+  };
 
   const handleLogOut = async () => {
     try {
@@ -69,28 +88,65 @@ const HomeNavBar = ({
           </button>
         </div>
       ) : (
-        <div className="searchBarAndAccountButtons">
-          <form onSubmit={searchMovies}>
-            <div className="searchContainer">
-              <input
-                type="text"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search"
-              />
-              <button type="submit" className="searchButton">
-                {searchIcon}
-              </button>
+        <div className="inputAndButtonsContainer">
+          <div className="defaultMenu">
+            <form onSubmit={searchMovies}>
+              <div className="searchContainer">
+                <input
+                  type="text"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Search"
+                />
+                <button type="submit" className="searchButton">
+                  {searchIcon}
+                </button>
+              </div>
+            </form>
+
+            <Link to="/signin">
+              <button className="signInButton">Sign In</button>
+            </Link>
+
+            <Link to="/signup">
+              <button className="signUpButton">Sign Up</button>
+            </Link>
+          </div>
+
+          {/* Hamburger Menu */}
+          <div className="hamburgerMenuContainer">
+            <div className={hamburgerIcon} onClick={toggleHamburgerMenu}>
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
             </div>
-          </form>
 
-          <Link to="/signin">
-            <button className="signInButton">Sign In</button>
-          </Link>
+            <div className={hamburgerMenuToggle}>
+              <div className="hamburgerInputAndButtons">
+                <form onSubmit={searchMovies}>
+                  <div className="searchContainer">
+                    <input
+                      type="text"
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                      placeholder="Search"
+                    />
+                    <button type="submit" className="searchButton">
+                      {searchIcon}
+                    </button>
+                  </div>
+                </form>
 
-          <Link to="/signup">
-            <button className="signUpButton">Sign Up</button>
-          </Link>
+                <Link to="/signin">
+                  <button className="signInButton">Sign In</button>
+                </Link>
+
+                <Link to="/signup">
+                  <button className="signUpButton">Sign Up</button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </nav>

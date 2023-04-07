@@ -89,6 +89,12 @@
   }
 }
 
+@media (max-width: 1500px) {
+  li {
+      width: 20%;
+  }
+}
+
 @media (max-width: 1240px) {
   .trendingMovies {
     h2 {
@@ -107,11 +113,21 @@
 }
 
 @media (max-width: 1044px) {
-
-    .posterImageNone {
-        font-size: 1.75rem;
-    }
-    .infoAndLikeContainer {
-        font-size: 1.2rem;
-    }
+  .posterImageNone {
+    font-size: 1.75rem;
   }
+  .infoAndLikeContainer {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 960px) {
+  li {
+    width: 24%;
+  }
+
+  .infoAndLikeContainer {
+    font-size: 1.1rem;
+    line-height: 1.35rem;
+  }
+}
