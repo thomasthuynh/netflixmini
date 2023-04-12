@@ -33,6 +33,13 @@ const Home = () => {
   // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [trailerOverlay, setTrailerOverlay] = useState("");
 
+  // Hamburger menu state variables
+  const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
+    "hamburgerMenu hamburgerMenuInactive"
+  );
+  const [hamburgerIcon, setHamburgerIcon] = useState("hamburgerIcon");
+  const [isClicked, setIsClicked] = useState(false);
+
   // If the user has scrolled from the top of the page:
   // 1. isScrolled will be set to true
   // 2. isScrolled will be passed to the HomeNavBar component
@@ -41,7 +48,7 @@ const Home = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
   };
 
-   // The selectMovie function will be run when the user selects a movie and will:
+  // The selectMovie function will be run when the user selects a movie and will:
   // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
   // 2. Fetch the trailer (fetchTrailer)
   // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
@@ -116,6 +123,9 @@ const Home = () => {
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchValue);
+    setIsClicked(false);
+    setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
+    setHamburgerIcon("hamburgerIcon");
   };
 
   // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed
@@ -136,10 +146,9 @@ const Home = () => {
 
   // This useEffect will run the loadTrendingMovies function on page load, displaying the top twenty trending movies
   useEffect(() => {
-    fetchMovies()
+    fetchMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   return (
     <div className="App">
@@ -149,6 +158,12 @@ const Home = () => {
         setSearchValue={setSearchValue}
         fetchMovies={fetchMovies}
         searchMovies={searchMovies}
+        hamburgerIcon={hamburgerIcon}
+        setHamburgerIcon={setHamburgerIcon}
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
+        hamburgerMenuToggle={hamburgerMenuToggle}
+        setHamburgerMenuToggle={setHamburgerMenuToggle}
       />
       <header
         className="homeHeader"

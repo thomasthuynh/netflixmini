@@ -15,27 +15,26 @@ const HomeNavBar = ({
   setSearchValue,
   searchMovies,
   fetchMovies,
+  hamburgerMenuToggle,
+  setHamburgerMenuToggle,
+  hamburgerIcon,
+  setHamburgerIcon,
+  isClicked,
+  setIsClicked,
 }) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Hamburger menu state variables
-  const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
-    "hamburgerMenu hamburgerMenuInactive"
-  );
-  const [hamburgerIcon, setHamburgerIcon] = useState("hamburgerIcon")
-  const [isClicked, setIsClicked] = useState(false);
-
   const toggleHamburgerMenu = () => {
     if (!isClicked) {
       setIsClicked(true);
       setHamburgerMenuToggle("hamburgerMenu");
-      setHamburgerIcon("hamburgerIcon close")
+      setHamburgerIcon("hamburgerIcon close");
     } else {
       setIsClicked(false);
       setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
-      setHamburgerIcon("hamburgerIcon")
+      setHamburgerIcon("hamburgerIcon");
     }
   };
 
@@ -64,28 +63,88 @@ const HomeNavBar = ({
       </h1>
 
       {user?.email ? (
-        <div className="searchBarAndAccountButtons">
-          <form onSubmit={searchMovies}>
-            <div className="searchContainer">
-              <input
-                type="text"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search"
-              />
-              <button type="submit" className="searchButton">
-                {searchIcon}
-              </button>
+        // <div className="searchBarAndAccountButtons">
+        //   <form onSubmit={searchMovies}>
+        //     <div className="searchContainer">
+        //       <input
+        //         type="text"
+        //         value={searchValue}
+        //         onChange={(e) => setSearchValue(e.target.value)}
+        //         placeholder="Search"
+        //       />
+        //       <button type="submit" className="searchButton">
+        //         {searchIcon}
+        //       </button>
+        //     </div>
+        //   </form>
+
+        //   <Link to="/account">
+        //     <button className="accountButton">Account</button>
+        //   </Link>
+
+        //   <button onClick={handleLogOut} className="logoutButton">
+        //     Log Out
+        //   </button>
+        // </div>
+        <div className="inputAndButtonsContainer">
+          <div className="defaultMenu">
+            <form onSubmit={searchMovies}>
+              <div className="searchContainer">
+                <input
+                  type="text"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Search"
+                />
+                <button type="submit" className="searchButton">
+                  {searchIcon}
+                </button>
+              </div>
+            </form>
+
+            <Link to="/account">
+              <button className="accountButton">Account</button>
+            </Link>
+
+            <button onClick={handleLogOut} className="logoutButton">
+              Log Out
+            </button>
+          </div>
+
+          {/* Hamburger Menu */}
+          <div className="hamburgerMenuContainer">
+            <div className={hamburgerIcon} onClick={toggleHamburgerMenu}>
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
             </div>
-          </form>
 
-          <Link to="/account">
-            <button className="accountButton">Account</button>
-          </Link>
+            <div className={hamburgerMenuToggle}>
+              <div className="hamburgerInputAndButtons">
+                <form onSubmit={searchMovies}>
+                  <div className="searchContainer">
+                    <input
+                      type="text"
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                      placeholder="Search"
+                    />
+                    <button type="submit" className="searchButton">
+                      {searchIcon}
+                    </button>
+                  </div>
+                </form>
 
-          <button onClick={handleLogOut} className="logoutButton">
-            Log Out
-          </button>
+                <Link to="/account">
+                  <button className="accountButton">Account</button>
+                </Link>
+
+                <button onClick={handleLogOut} className="logoutButton">
+                  Log Out
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="inputAndButtonsContainer">

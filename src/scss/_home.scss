@@ -97,12 +97,17 @@
   }
 }
 
-@media (max-width: 1240px) {
+@media(max-width: 1560px) {
   .movieDetails {
     width: 60%;
+  }
+}
+
+@media (max-width: 1240px) {
+  .movieDetails {
     h2 {
       font-size: 5rem;
-      line-height: 6rem;
+      line-height: 5.4rem;
     }
 
     p {
@@ -135,9 +140,11 @@
 
 @media (max-width: 920px) {
   .movieDetails {
+    width: 70%;
+
     h2 {
       font-size: 4.25rem;
-      line-height: 5.5rem;
+      line-height: 4.8rem;
     }
 
     p {
@@ -167,21 +174,21 @@
     right: 7.5rem;
   }
 
-  @media (max-width: 740px) {
+  @media (max-width: 800px) {
     .homeHeader {
-      height: 75vh;
+      height: 90vh;
     }
 
     .movieDetails {
       width: 75%;
       h2 {
         font-size: 4rem;
-        line-height: 4.75rem;
+        line-height: 4.4rem;
       }
 
       p {
         font-size: 1.85rem;
-        line-height: 2.4rem;
+        line-height: 2.5rem;
       }
     }
 
@@ -196,6 +203,24 @@
       bottom: 20rem;
       left: 5rem;
       right: 5rem;
+    }
+  }
+
+  @media(max-width: 670px) {
+    .homeHeader {
+      height: 80vh;
+    }
+    .movieDetails {
+      width: 80%;
+      h2 {
+        font-size: 3.2rem;
+        line-height: 3.6rem;
+      }
+
+      p {
+        font-size: 1.7rem;
+        line-height: 2.1rem;
+      }
     }
   }
 }

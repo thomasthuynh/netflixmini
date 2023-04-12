@@ -53,7 +53,7 @@ nav {
 
 .bar {
   width: 4.5rem;
-  height: 0.75rem;
+  height: 0.65rem;
   margin-bottom: 0.65rem;
   background: #fff;
 }
@@ -155,117 +155,189 @@ nav {
     height: 2rem;
     width: 23rem;
   }
+}
 
-  @media (max-width: 804px) {
-    .signInButton,
-    .accountButton {
-      font-size: 1.6rem;
-      margin: 1.5rem 2rem;
+@media (max-width: 804px) {
+  .signInButton,
+  .accountButton {
+    font-size: 1.6rem;
+    margin: 1.5rem 2rem;
+  }
+
+  .signUpButton,
+  .logoutButton {
+    font-size: 1.6rem;
+    padding: 1.15rem 1.5rem;
+  }
+
+  .searchContainer {
+    height: 1.8rem;
+    width: 20rem;
+
+    input {
+      width: 16rem;
+      font-size: 1.5rem;
+      margin-left: 0.5rem;
     }
+  }
+}
 
-    .signUpButton,
-    .logoutButton {
-      font-size: 1.6rem;
-      padding: 1.15rem 1.5rem;
-    }
+@media (max-width: 700px) {
+  nav {
+    height: 4rem;
+  }
+  .defaultMenu {
+    display: none;
+  }
 
-    .searchContainer {
-      height: 1.8rem;
-      width: 20rem;
+  .hamburgerMenuContainer {
+    display: flex;
+    // flex-direction: column;
+    // align-items: flex-end;
+    position: relative;
+  }
 
-      input {
-        width: 16rem;
-        font-size: 1.5rem;
+  .hamburgerIcon {
+    display: block;
+    cursor: pointer;
+    z-index: 1;
+
+    &.close {
+      .bar {
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(1) {
+          transform: translateY(1.3rem) rotate(45deg);
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-1.3rem) rotate(-45deg);
+        }
       }
     }
   }
 
-  @media (max-width: 700px) {
-    nav {
-      height: 4rem;
+  .bar {
+    transition: all 0.25s ease;
+  }
+
+  .hamburgerMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -2.5rem;
+    right: -2.5rem;
+    height: 100vh;
+    width: 40vw;
+    background: #000;
+    transition: all 0.25s ease;
+
+    .signInButton,
+    .accountButton {
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 0.75rem;
+      width: 21rem;
+      height: 5rem;
+      margin: 1.5rem 0;
     }
-    .defaultMenu {
-      display: none;
+
+    .signUpButton,
+    .logoutButton {
+      color: #fff;
+      width: 21rem;
+      height: 5rem;
     }
 
-    .hamburgerMenuContainer {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      position: relative;
+    &.hamburgerMenuInactive {
+      position: absolute;
+      height: 100vh;
+      right: -30rem;
+    }
+  }
+
+  .hamburgerInputAndButtons {
+    padding: 10rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 580px) {
+  .hamburgerMenu {
+    width: 45vw;
+
+    .signInButton,
+    .accountButton {
+      font-size: 1.5rem;
+      width: 18rem;
+      height: 4.25rem;
     }
 
-    .hamburgerIcon {
-      display: block;
-      cursor: pointer;
+    .signUpButton,
+    .logoutButton {
+      font-size: 1.5rem;
+      width: 18rem;
+      height: 4.25rem;
+    }
+  }
 
-      &.close {
+  .searchContainer {
+    height: 1.5rem;
+    width: 17rem;
 
-        .bar {
-          &:nth-child(2) {
-            opacity: 0;
-          }
-  
-          &:nth-child(1) {
-            transform: translateY(1.36rem) rotate(45deg);
-          }
-  
-          &:nth-child(3) {
-            transform: translateY(-1.36rem) rotate(-45deg);
-          }
+    input {
+      width: 12rem;
+      margin-left: 0.5rem;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .hamburgerMenu {
+    width: 50vw;
+  }
+
+  .bar {
+    width: 4rem;
+    height: 0.6rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .hamburgerIcon {
+    &.close {
+      .bar {
+        &:nth-child(1) {
+          transform: translateY(1.15rem) rotate(45deg);
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-1.15rem) rotate(-45deg);
         }
       }
     }
+  }
+}
 
-    .bar {
-      transition: all 0.25s ease;
-    }
+@media (max-width: 420px) {
+  .hamburgerMenu {
+    width: 60vw;
+  }
+}
 
-    .hamburgerMenu {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: -2.5rem;
-      right: -2.5rem;
-      height: 100vh;
-      background: #000;
-      z-index: -1;
-      transition: all 0.25s ease;
-
-
-      .signInButton {
-        background: #fff;
-        color: #000;
-        border: none;
-        border-radius: 0.75rem;
-        margin: 0;
-        width: 21rem;
-        height: 5rem;
-        margin: 1.5rem 0;
-      }
-
-      .signUpButton {
-        color: #fff;
-        width: 21rem;
-        height: 5rem;
-      }
-
-      &.hamburgerMenuInactive {
-        position: absolute;
-        height: 100vh;
-        top: -2.5rem;
-        right: -30rem;
-        transition: all 0.25s ease;
-      }
-    }
-
-
-
-    .hamburgerInputAndButtons {
-      padding: 10rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }    
+@media (max-width: 360px) {
+  .hamburgerMenu {
+    width: 70vw;
   }
 }
