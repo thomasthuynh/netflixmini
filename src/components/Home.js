@@ -201,9 +201,9 @@ const Home = () => {
                   width: "100%",
                   playerVars: {
                     autoplay: 1,
-                  },
-                  playsinline: true
+                  }
                 }}
+                playsInline={true}
               />
               <button className="closeTrailerButton" onClick={closeTrailer}>
                 {xMark} &nbsp; Close
