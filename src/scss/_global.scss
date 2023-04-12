@@ -1,6 +1,7 @@
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -31,6 +32,10 @@ ul {
 
 a {
     text-decoration: none;
+    color: inherit;
+}
+
+button {
     color: inherit;
 }
 
