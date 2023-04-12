@@ -203,7 +203,7 @@ const Home = () => {
                     autoplay: 1,
                   }
                 }}
-                playsInline={true}
+                playsInline
               />
               <button className="closeTrailerButton" onClick={closeTrailer}>
                 {xMark} &nbsp; Close
