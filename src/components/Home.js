@@ -202,6 +202,7 @@ const Home = () => {
                   playerVars: {
                     autoplay: 1,
                   },
+                  playsinline: true
                 }}
               />
               <button className="closeTrailerButton" onClick={closeTrailer}>
