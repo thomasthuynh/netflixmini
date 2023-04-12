@@ -1,11 +1,12 @@
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
     background: #000;
-    overflow-x: hidden;
 }
 
 .wrapper {
