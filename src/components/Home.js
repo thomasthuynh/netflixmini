@@ -30,8 +30,8 @@ const Home = () => {
   const [playVideo, setPlayVideo] = useState(false);
   // isScrolled will determine whether the user has scrolled down from the top of the page
   const [isScrolled, setIsScrolled] = useState(false);
-  // trailerOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
-  const [trailerOverlay, setTrailerOverlay] = useState("");
+  // appOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
+  const [appOverlay, setAppOverlay] = useState("");
 
   // Hamburger menu state variables
   const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
@@ -58,7 +58,7 @@ const Home = () => {
     setPlayVideo(false);
     fetchTrailer(movie.id);
     setSelectedMovie(movie);
-    setTrailerOverlay("trailerOverlay trailerOverlayOff");
+    setAppOverlay("appOverlay appOverlayOff");
     window.scrollTo(0, 0);
   };
 
@@ -78,6 +78,8 @@ const Home = () => {
         },
       }
     );
+
+    console.log(response.data.results)
 
     if (response.data.results.length > 0) {
       setMovieData(response.data.results);
@@ -132,7 +134,7 @@ const Home = () => {
   const playTrailer = () => {
     if (trailer !== undefined) {
       setPlayVideo(true);
-      setTrailerOverlay("trailerOverlay");
+      setAppOverlay("appOverlay");
     } else {
       alert("Sorry, there is no trailer available for the selected movie.");
     }
@@ -141,7 +143,7 @@ const Home = () => {
   // The closeTrailer function will close the trailer playing and turn off the background overlay
   const closeTrailer = () => {
     setPlayVideo(false);
-    setTrailerOverlay("trailerOverlay trailerOverlayOff");
+    setAppOverlay("appOverlay appOverlayOff");
   };
 
   // This useEffect will run the loadTrendingMovies function on page load, displaying the top twenty trending movies
@@ -152,6 +154,7 @@ const Home = () => {
 
   return (
     <div className="App">
+      <div className={appOverlay}></div>
       <HomeNavBar
         isScrolled={isScrolled}
         searchValue={searchValue}
@@ -164,6 +167,8 @@ const Home = () => {
         setIsClicked={setIsClicked}
         hamburgerMenuToggle={hamburgerMenuToggle}
         setHamburgerMenuToggle={setHamburgerMenuToggle}
+        setAppOverlay={setAppOverlay}
+        setPlayVideo={setPlayVideo}
       />
       <header
         className="homeHeader"
@@ -211,7 +216,6 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className={trailerOverlay}></div>
       </header>
 
       <section className="trendingMovies">

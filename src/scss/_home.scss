@@ -1,3 +1,7 @@
+.App {
+  position: relative;
+}
+
 .homeHeader {
   height: 100vh;
   background-size: cover;
@@ -72,7 +76,7 @@
 
 .moviePlayer {
   position: absolute;
-  z-index: 30;
+  z-index: 2;
   top: 10rem;
   bottom: 10rem;
   left: 20rem;
@@ -84,16 +88,16 @@
   height: 100%;
 }
 
-.trailerOverlay {
+.appOverlay {
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
-  z-index: 20;
+  z-index: 1;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 
-  &.trailerOverlayOff {
+  &.appOverlayOff {
     display: none;
   }
 }
@@ -104,7 +108,7 @@
   }
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1280px) {
   .movieDetails {
     h2 {
       font-size: 5rem;
@@ -132,8 +136,8 @@
   }
 
   .moviePlayer {
-    top: 20rem;
-    bottom: 20rem;
+    top: 15rem;
+    bottom: 15rem;
     left: 10rem;
     right: 10rem;
   }
@@ -169,10 +173,8 @@
   }
 
   .moviePlayer {
-    top: 25rem;
-    bottom: 25rem;
-    left: 7.5rem;
-    right: 7.5rem;
+    left: 8rem;
+    right: 8rem;
   }
 
   @media (max-width: 800px) {
@@ -197,10 +199,10 @@
     }
 
     .moviePlayer {
-      top: 20rem;
-      bottom: 20rem;
-      left: 5rem;
-      right: 5rem;
+      top: 18rem;
+      bottom: 18rem;
+      left: 6rem;
+      right: 6rem;
     }
   }
 
@@ -216,6 +218,60 @@
         font-size: 1.7rem;
         line-height: 2.1rem;
       }
+    }
+
+    .moviePlayer {
+      top: 20.5rem;
+      bottom: 20.5rem;
+      left: 4.5rem;
+      right: 4.5rem;
+    }
+  }
+
+  @media(max-width: 580px) {
+    .moviePlayer {
+      top: 22.5rem;
+      bottom: 22.5rem;
+      left: 3.5rem;
+      right: 3.5rem;
+    }
+  }
+
+  @media(max-width: 470px) {
+
+    .movieDetails {
+      width: 90%;
+      h2 {
+        font-size: 2.8rem;
+        line-height: 3.2rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+        line-height: 1.9rem;
+      }
+    }
+
+    .moviePlayer {
+      top: 26rem;
+      bottom: 26rem;
+      left: 2.5rem;
+      right: 2.5rem;
+    }
+
+    .watchTrailerButton,
+    .closeTrailerButton {
+      font-size: 1.4rem;
+      padding: 1.2rem 1.5rem;
+    }
+  }
+
+  @media(max-width: 360px) {
+    .moviePlayer {
+      top: 28rem;
+      bottom: 28rem;
+      left: 1.5rem;
+      right: 1.5rem;
     }
   }
 }

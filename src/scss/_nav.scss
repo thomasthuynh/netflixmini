@@ -25,7 +25,7 @@ nav {
 .homeNav {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 3;
   transition: all 0.75s ease;
 
   &.scrolled {
@@ -194,15 +194,14 @@ nav {
 
   .hamburgerMenuContainer {
     display: flex;
-    // flex-direction: column;
-    // align-items: flex-end;
     position: relative;
   }
 
   .hamburgerIcon {
     display: block;
+    margin-top: 0.75rem;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
 
     &.close {
       .bar {
@@ -233,7 +232,7 @@ nav {
     right: -2.5rem;
     height: 100vh;
     width: 45vw;
-    background: #000;
+    background: rgb(10, 10, 10);
     overflow: hidden;
     transition: all 0.25s ease;
 
