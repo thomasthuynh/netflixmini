@@ -198,6 +198,14 @@
       padding: 1.3rem 1.6rem;
     }
 
+    .movieOverview {
+      padding: 1.25rem 0;
+    }
+
+    .movieRating {
+      padding-bottom: 1.75rem;
+    }
+
     .moviePlayer {
       top: 18rem;
       bottom: 18rem;
@@ -218,6 +226,10 @@
         font-size: 1.7rem;
         line-height: 2.1rem;
       }
+    }
+
+    .movieRating {
+      padding-bottom: 1.5rem;
     }
 
     .moviePlayer {
