@@ -32,7 +32,6 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   // appOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [appOverlay, setAppOverlay] = useState("");
-  const [searchError, setSearchError] = useState("");
 
   // Hamburger menu state variables
   const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
