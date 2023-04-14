@@ -32,6 +32,7 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   // appOverlay will hold the class name for the home page overlay depending on whether a trailer is playing or not
   const [appOverlay, setAppOverlay] = useState("");
+  const [searchError, setSearchError] = useState("");
 
   // Hamburger menu state variables
   const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
@@ -79,8 +80,6 @@ const Home = () => {
       }
     );
 
-    console.log(response.data.results)
-
     if (response.data.results.length > 0) {
       setMovieData(response.data.results);
       setSelectedMovie(response.data.results[0]);
@@ -92,9 +91,11 @@ const Home = () => {
         selectMovie(response.data.results[0]);
       }
     } else {
-      alert(
-        "Something went wrong. Please enter a valid movie title or try again later."
-      );
+      alert("Something went wrong. Please enter a valid movie title or try again later.")
+      setIsClicked(true);
+      setHamburgerMenuToggle("hamburgerMenu");
+      setHamburgerIcon("hamburgerIcon close");
+      setAppOverlay("appOverlay")
     }
   };
 
@@ -128,8 +129,13 @@ const Home = () => {
     setIsClicked(false);
     setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
     setHamburgerIcon("hamburgerIcon");
-  };
+    setAppOverlay("appOverlay appOverlayOff")
 
+    if(e.key == 'Enter'){
+      e.target.blur();
+  }
+  };
+  
   // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed
   const playTrailer = () => {
     if (trailer !== undefined) {

@@ -29,7 +29,7 @@ const HomeNavBar = ({
   const navigate = useNavigate();
 
   const toggleHamburgerMenu = () => {
-    if (!isClicked) {
+    if (isClicked === false) {
       setIsClicked(true);
       setHamburgerMenuToggle("hamburgerMenu");
       setHamburgerIcon("hamburgerIcon close");
@@ -75,29 +75,6 @@ const HomeNavBar = ({
       </h1>
 
       {user?.email ? (
-        // <div className="searchBarAndAccountButtons">
-        //   <form onSubmit={searchMovies}>
-        //     <div className="searchContainer">
-        //       <input
-        //         type="text"
-        //         value={searchValue}
-        //         onChange={(e) => setSearchValue(e.target.value)}
-        //         placeholder="Search"
-        //       />
-        //       <button type="submit" className="searchButton">
-        //         {searchIcon}
-        //       </button>
-        //     </div>
-        //   </form>
-
-        //   <Link to="/account">
-        //     <button className="accountButton">Account</button>
-        //   </Link>
-
-        //   <button onClick={handleLogOut} className="logoutButton">
-        //     Log Out
-        //   </button>
-        // </div>
         <div className="inputAndButtonsContainer">
           <div className="defaultMenu">
             <form onSubmit={searchMovies}>

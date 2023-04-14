@@ -150,8 +150,16 @@
 
   .infoAndLikeContainer {
     height: 17.5%;
-    font-size: 0.9rem;
-    line-height: 1rem;
+    font-size: 1rem;
+    line-height: 1.1rem;
   }
 }
+
+@media (max-width: 380px) {
+  .infoAndLikeContainer {
+    font-size: 0.8rem;
+    line-height: 0.95rem;
+  }
+}
+
 
