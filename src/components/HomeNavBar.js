@@ -66,10 +66,6 @@ const HomeNavBar = ({
     }
   };
 
-  const handleEnter = (e) => {
-      e.target.blur();
-  }
-
   return (
     <nav className={isScrolled ? "homeNav scrolled" : "homeNav"}>
       <h1>
@@ -88,7 +84,6 @@ const HomeNavBar = ({
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   placeholder="Search"
-                  onBlur={handleEnter}
                 />
                 <button type="submit" className="searchButton">
                   {searchIcon}

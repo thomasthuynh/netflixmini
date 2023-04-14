@@ -123,6 +123,7 @@
 }
 
 @media (max-width: 960px) {
+
   .infoAndLikeContainer {
     font-size: 1.1rem;
     line-height: 1.35rem;
@@ -130,18 +131,40 @@
 }
 
 @media (max-width: 860px) {
+    .trendingMovies {
+    h2 {
+      font-size: 3.25rem;
+      padding: 3.5rem 0;
+    }
+  }
+
   li {
     width: 28%;
   }
 }
 
-@media (max-width: 644px) {
+@media (max-width: 660px) {
+  .trendingMovies {
+    h2 {
+      font-size: 2.75rem;
+      padding: 3rem 0;
+    }
+    
+  }
+
   li {
     width: 42%;
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 470px) {
+  .trendingMovies {
+    h2 {
+      font-size: 2.25rem;
+      padding: 2rem 0;
+    }
+  }
+
   .posterImage,
   .posterImageNone {
     height: 82.5%;
