@@ -129,10 +129,6 @@ const Home = () => {
     setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
     setHamburgerIcon("hamburgerIcon");
     setAppOverlay("appOverlay appOverlayOff")
-    
-    if (e.key === "Enter") {
-      e.target.blur();
-    }
   };
   
   // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed
