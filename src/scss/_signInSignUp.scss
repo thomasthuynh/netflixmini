@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(90vh - 5rem);
+    height: calc(90vh - 10rem);
 }
 
 .signInForm,
@@ -26,7 +26,7 @@
     color: #fff;
 
     h2 {
-        padding-top: 4rem;
+        padding-top: 6rem;
         padding-bottom: 2rem;
         font-size: 4rem;
         font-weight: bold;
@@ -70,7 +70,7 @@
         background: #e50914;
         color: #fff;
         border: none;
-        margin-top: 1rem;
+        margin-top: 0.75rem;
         padding: 1.25rem 1rem;
         border-radius: 0.5rem;
         font-size: 1.75rem;
@@ -92,6 +92,157 @@
 
         &:hover {
             text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .signInForm,
+    .signUpForm {
+        height: 52.5rem;
+        width: 40rem;
+
+        h2 {
+            font-size: 3.5rem;
+        }
+
+        .errorMessage {
+            padding: 1.4rem 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+            margin: 2rem;
+        }
+
+        input {
+            height: 2.5rem;
+            width: 22.5rem;
+            padding: 0.9rem;
+            font-size: 1.5rem;
+        }
+
+        button {
+            margin-top: 0.5rem;
+            font-size: 1.6rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .signInForm,
+    .signUpForm {
+        width: 37.5rem;
+
+        h2 {
+            padding-top: 5.5rem;
+            font-size: 3.25rem;
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .signInForm,
+    .signUpForm {
+        height: 45rem;
+        width: 32.5rem;
+
+        h2 {
+            padding-top: 4rem;
+            font-size: 3rem;
+        }
+
+        .errorMessage {
+            padding: 1rem;
+            font-size: 1.2rem;
+            width: 18rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin: 2rem;
+        }
+
+        input {
+            margin-bottom: 2rem;
+            height: 2rem;
+            width: 18rem;
+            font-size: 1.3rem;
+        }
+
+        button {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .signInForm,
+    .signUpForm {
+        height: 40rem;
+        width: 27.5rem;
+
+        h2 {
+            padding-top: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .errorMessage {
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            line-height: 1.2rem;
+            width: 15rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin: 2rem;
+        }
+
+        input {
+            margin-bottom: 1.5rem;
+            height: 1.5rem;
+            width: 15rem;
+            font-size: 1.2rem;
+        }
+
+        button {
+            margin-top: 0;
+            font-size: 1.4rem;
+            padding: 1rem;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .signInForm,
+    .signUpForm {
+        height: 37.5rem;
+        width: 25rem;
+
+        h2 {
+            font-size: 2.25rem;
+        }
+
+        .errorMessage {
+            font-size: 1rem;
+            width: 14rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        input {
+            height: 1.25rem;
+            width: 14rem;
+            font-size: 1.1rem;
+        }
+
+        button {
+            font-size: 1.3rem;
         }
     }
 }
