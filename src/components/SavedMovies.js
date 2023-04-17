@@ -26,10 +26,18 @@ const SavedMovies = () => {
 
   // "onSnapshot" is a Firebase method which sets up a real time listener that triggers a callback function everytime data in the movieRef collection changes
   // The callback function passed to "onSnapshot" retrieves movie data from "doc" using the "data()" method and updates the movies state variable (setMovies)
+  // useEffect(() => {
+  //   onSnapshot(movieRef, (doc) => {
+  //     setMovies(doc.data()?.savedMovies);
+  //   });
+  // }, [user?.email, movieRef]);
+
   useEffect(() => {
-    onSnapshot(movieRef, (doc) => {
+    const unsubscribe = onSnapshot(movieRef, (doc) => {
       setMovies(doc.data()?.savedMovies);
     });
+
+    return unsubscribe
   }, [user?.email, movieRef]);
 
   const deleteMovie = async (passedId) => {

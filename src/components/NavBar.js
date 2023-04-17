@@ -1,19 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import { useContext } from "react";
+// import AuthContext from "../context/AuthContext";
+// import { useContext } from "react";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  // const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogOut = async () => {
-    try {
-      await logOut();
-      navigate("/");
-    } catch (err) {
-      alert(err);
-    }
-  };
+  // const handleLogOut = async () => {
+  //   try {
+  //     await logOut();
+  //     navigate("/");
+  //   } catch (err) {
+  //     alert(err);
+  //   }
+  // };
 
   const loadLandingPage = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const NavBar = () => {
       <Link onClick={loadLandingPage}>Netflix <span className="mini">Mini</span></Link>
       </h1>
 
-      {user?.email ? (
+      {/* {user?.email ? (
         <div className="searchBarAndAccountButtons">
           <Link to="/account">
             <button className="accountButton">Account</button>
@@ -46,7 +46,7 @@ const NavBar = () => {
             <button className="signUpButton">Sign Up</button>
           </Link>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };

@@ -1,32 +1,142 @@
 .savedMovieList {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2rem;
 
-    li {
-        width: 15.5%;
-    }
+  .posterImage {
+    height: 85%;
+  }
+
+  li {
+    width: 11.25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .infoAndDeleteContainer {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: #e50914;
-    color: #fff;
-    margin-top: -0.25rem;
-    padding: 0 1.5rem;
-    height: 5.5rem;
+  font-size: 1.15rem;
+  line-height: 1.3rem;
+  font-weight: bold;
+  background: #e50914;
+  color: #fff;
+  height: 15%;
+  margin-top: -0.25rem;
+  padding: 0 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .movieTitle {
+    width: 80%;
+    height: 85%;
+    overflow: hidden;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+  }
 }
 
 .trashIcon {
-    font-size: 2.75rem;
-    cursor: pointer;
+  font-size: 2.5rem;
+  cursor: pointer;
 
-    &:hover,
-    &:focus {
-        opacity: 0.75;
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 1640px) {
+    .savedMovieList {
+        li {
+            width: 13%;
+        }
     }
+}
+
+@media (max-width: 1596px) {
+    .savedMovieList {
+        li {
+            width: 15%;
+        }
+    }
+}
+
+@media (max-width: 1240px) {
+    .savedMovieList {
+        li {
+            width: 18%;
+        }
+    }
+}
+
+@media (max-width: 1040px) {
+    .savedMovieList {
+        li {
+            width: 22.5%;
+        }
+    }
+}
+
+@media (max-width: 860px) {
+    .savedMovieList {
+        li {
+            width: 30%;
+        }
+    }
+}
+
+@media (max-width: 656px) {
+    .savedMovieList {
+        justify-content: center;
+        li {
+            width: 28%;
+        }
+    }
+
+    .infoAndDeleteContainer {
+        font-size: 1rem;
+        line-height: 1.05rem;
+      }
+}
+
+@media (max-width: 608px) {
+    .savedMovieList {
+        li {
+            width: 42%;
+        }
+    }
+
+    .infoAndDeleteContainer {
+        font-size: 1rem;
+        line-height: 1.05rem;
+      }
+}
+
+@media (max-width: 440px) {
+    .savedMovieList {
+        .posterImage,
+        .posterImageNone {
+            height: 82.5%;
+        }
+    }
+
+    .infoAndDeleteContainer {
+        height: 17.5%;
+        padding: 0 0.75rem;
+        font-size: 0.9rem;
+        line-height: 1rem;
+      }
+}
+
+@media (max-width: 390px) {
+    .infoAndDeleteContainer {
+        font-size: 0.7rem;
+        line-height: 0.8rem;
+      }
+
+      .trashIcon {
+        font-size: 2.25rem;
+      }
 }
