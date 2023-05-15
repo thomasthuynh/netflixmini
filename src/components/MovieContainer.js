@@ -29,7 +29,7 @@ const MovieContainer = ({ movie, selectMovie }) => {
   const movieRef = doc(db, "users", `${user?.email}`);
 
   // The saveMovie function will:
-  // Check if there is a user, 
+  // Check if there is a user,
   // - If there is (if the user is signed in), will check if there is a user email (which there should be if the user is properly signed in)
   //- If there is a user email, then the like state variable will be set to true, and the favourited movie will be added as an item in the savedMovies array
   // - If there is not (the user is not signed in), will run the alert

@@ -37,7 +37,7 @@ const SavedMovies = () => {
       setMovies(doc.data()?.savedMovies);
     });
 
-    return unsubscribe
+    return unsubscribe;
   }, [user?.email, movieRef]);
 
   const deleteMovie = async (passedId) => {

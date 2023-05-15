@@ -22,7 +22,7 @@ const HomeNavBar = ({
   isClicked,
   setIsClicked,
   setAppOverlay,
-  setPlayVideo
+  setPlayVideo,
 }) => {
   const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
   const { user, logOut } = useContext(AuthContext);
@@ -33,13 +33,13 @@ const HomeNavBar = ({
       setIsClicked(true);
       setHamburgerMenuToggle("hamburgerMenu");
       setHamburgerIcon("hamburgerIcon close");
-      setAppOverlay("appOverlay")
-      setPlayVideo(false)
+      setAppOverlay("appOverlay");
+      setPlayVideo(false);
     } else {
       setIsClicked(false);
       setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
       setHamburgerIcon("hamburgerIcon");
-      setAppOverlay("appOverlay appOverlayOff")
+      setAppOverlay("appOverlay appOverlayOff");
     }
   };
 
@@ -59,10 +59,10 @@ const HomeNavBar = ({
     fetchMovies();
 
     if (isClicked) {
-      setIsClicked(false)
+      setIsClicked(false);
       setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
       setHamburgerIcon("hamburgerIcon");
-      setAppOverlay("appOverlay appOverlayOff")
+      setAppOverlay("appOverlay appOverlayOff");
     }
   };
 

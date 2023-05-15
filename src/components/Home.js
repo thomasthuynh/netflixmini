@@ -34,9 +34,11 @@ const Home = () => {
   const [appOverlay, setAppOverlay] = useState("");
 
   // Hamburger menu state variables
+  // The hamburger menu will be inactive by default
   const [hamburgerMenuToggle, setHamburgerMenuToggle] = useState(
     "hamburgerMenu hamburgerMenuInactive"
   );
+  // The hamburger icon will be the initial display and will not be clicked
   const [hamburgerIcon, setHamburgerIcon] = useState("hamburgerIcon");
   const [isClicked, setIsClicked] = useState(false);
 
@@ -52,7 +54,7 @@ const Home = () => {
   // 1. Close the trailer, if it was opened from a previous movie selection (setPlayVideo(false))
   // 2. Fetch the trailer (fetchTrailer)
   // 3. Fetch the movie data (title, overview, background image, etc.) and display it on the page (selectedMovie)
-  // 4. The trailer overlay will be turned off, if opened from a previous movie selection
+  // 4. The background overlay will be turned off, if opened from a previous movie selection
   // 5. The application will then scroll back to the top of the page
   const selectMovie = (movie) => {
     setPlayVideo(false);
@@ -90,17 +92,20 @@ const Home = () => {
         selectMovie(response.data.results[0]);
       }
     } else {
-      alert("Something went wrong. Please enter a valid movie title or try again later.")
+      alert(
+        "Something went wrong. Please enter a valid movie title or try again later."
+      );
+      // The hamburger menu will stay open if the user's search is invalid
       setIsClicked(true);
       setHamburgerMenuToggle("hamburgerMenu");
       setHamburgerIcon("hamburgerIcon close");
-      setAppOverlay("appOverlay")
+      setAppOverlay("appOverlay");
     }
   };
 
   // The fetchTrailer function will:
   // 1. Retrieve the video data for the movies
-  // 2. Search for a value titled "Official Trailer"/"official trailer". If found, trailerVideo will be assigned the value returned and set to the trailer state variable (setTrailer). If not found, it will be assigned the first property in the array will be assigned.
+  // 2. Search for a value titled "Official Trailer"/"official trailer". If found, trailerVideo will be assigned the value returned and set to the trailer state variable (setTrailer). If not found, it will be assigned the first item in the array.
   const fetchTrailer = async (id) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}`,
@@ -121,17 +126,17 @@ const Home = () => {
     setTrailer(trailerVideo ? trailerVideo : response.data.videos.results[0]);
   };
 
-  // The searchMovies function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument
+  // The searchMovies function will be run when the user searches for a movie title and will trigger fetchMovies to run taking searchValue as a function argument. If the search is successfully executed, the hamburger menu will close.
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchValue);
     setIsClicked(false);
     setHamburgerMenuToggle("hamburgerMenu hamburgerMenuInactive");
     setHamburgerIcon("hamburgerIcon");
-    setAppOverlay("appOverlay appOverlayOff")
+    setAppOverlay("appOverlay appOverlayOff");
   };
-  
-  // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed
+
+  // The playTrailer function will play the movie trailer, if there is one available, and turn on the background overlay. Otherwise, the alert will be displayed.
   const playTrailer = () => {
     if (trailer !== undefined) {
       setPlayVideo(true);
@@ -207,9 +212,8 @@ const Home = () => {
                   width: "100%",
                   playerVars: {
                     autoplay: 1,
-                  }
+                  },
                 }}
-                playsInline
               />
               <button className="closeTrailerButton" onClick={closeTrailer}>
                 {xMark} &nbsp; Close
